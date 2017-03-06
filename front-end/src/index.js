@@ -2,6 +2,7 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import App from './App';
 import './index.css';
+<<<<<<< HEAD
 import {Router, IndexRoute, Route, hashHistory} from 'react-router';
 import Home from './Containers/Home';
 import Balancing from './Containers/Balancing';
@@ -16,5 +17,10 @@ ReactDOM.render(
 			<Route path='sideeffects' component={SideEffects} />			
 		</Route>		  
 	</Router>,
+=======
+
+ReactDOM.render(
+  <App />,
+>>>>>>> master
   document.getElementById('root')
 );
