@@ -19,7 +19,6 @@ class Login extends Component {
 		this.props.loginAction({
 			username: event.target[0].value,
 			password: event.target[1].value,
-			email: event.target[2].value
 		})
 		// console.log(event.target[0].value)
 		// console.log(event.target[1].value)
@@ -36,10 +35,9 @@ class Login extends Component {
 		}
 		return (
 			<div className="container">
-				<div className="row">
+
 					<div className="Login">
 					<h1>{Message}</h1>
-						
 						<form className="form-group login-form" onSubmit={this.processLogin}>
 							<div className="form-group">
 								<label for="username">Username</label>
@@ -50,11 +48,10 @@ class Login extends Component {
 								<input type="password" className="form-control" placeholder="Password" />
 							</div>
 							
-							<button type="submit" className="btn btn-default">Submit</button>
+							<button type="submit" className="btn btn-primary">Submit</button>
 						</form>
 
 					</div>
-				</div>
 			</div>
 		)
 	}

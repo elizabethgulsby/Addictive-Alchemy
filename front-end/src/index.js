@@ -9,6 +9,7 @@ import Home from './Containers/Home';
 import Balancing from './Containers/Balancing';
 import SideEffects from './Containers/SideEffects';
 import Login from './Containers/Login.js';
+import Register from './Containers/Register.js';
 
 import {Provider} from 'react-redux';
 
@@ -24,7 +25,8 @@ ReactDOM.render(
 		<Router history={hashHistory} >
 			<Route path='/' component={App}>			
 				<IndexRoute component={Home} />		
-				<Route path='login' component={Login} />			
+				<Route path='login' component={Login} />
+				<Route path='register' component={Register} />				
 				<Route path='balancing' component={Balancing} />
 				<Route path='sideeffects' component={SideEffects} />			
 			</Route>		  
