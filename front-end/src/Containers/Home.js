@@ -6,7 +6,7 @@ class Home extends Component {
   render() {
     return (
       <div className="Home">
-      	<img src={require('../Images/logo.png')} /> 
+      	<img src="http://placehold.it/350x150" />
       </div>
     );
   }
