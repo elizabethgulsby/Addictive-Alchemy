@@ -29,8 +29,10 @@
   height:  100vh;
 }
 
-.logo {
+.logo img {
   float:  left;
+  width:  200px;
+  height:  200px;
 }
 
 .workbench {
