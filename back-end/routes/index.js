@@ -20,4 +20,25 @@ router.get('/', function(req, res, next) {
   	});
 });
 
+//get the login page
+router.post('/login', function(req, res, next) {
+	var username = req.body.username;
+	var password = req.body.password;
+	var email = req.body.email;
+	var findUser = "SELECT * from users where user_name = ?";
+	connection.query(findUser, [req.body.username], (error, results, fields) => {
+		if (error) throw error;
+		if (results.length === 0) {
+			res.json({
+				msg: "NOPE.exe"
+			});
+		}
+		else {
+			res.json({
+				msg: "Cool!"
+			})
+		}
+	});
+});
+
 module.exports = router;
