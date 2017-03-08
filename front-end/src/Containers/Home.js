@@ -7,7 +7,7 @@ class Home extends Component {
     return (
       <div className="Home">
       	 <div className="logo">
-      	 	<img src="../Images/Mix_C14004_Logo_Game_words.png" />
+      	 	<img src="/Images/Mix_C14004_Logo_Game_words.png" />
       	 </div>
       	 <div className="workbench">
       	 	Side Effects Workbench
