@@ -41,7 +41,7 @@ class Login extends Component {
 						<form className="form-group login-form" onSubmit={this.processLogin}>
 							<div className="form-group">
 								<label for="username">Username</label>
-								<input type="email" className="form-control" placeholder="username" />
+								<input type="text" className="form-control" placeholder="username" />
 							</div>
 							<div className="form-group">
 								<label for="password">Password</label>
