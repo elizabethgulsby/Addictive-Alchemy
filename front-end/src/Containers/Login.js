@@ -3,6 +3,7 @@ import LoginAction from '../Actions/LoginAction.js';
 import {connect} from 'react-redux';
 import {bindActionCreators} from 'redux';
 import {hashHistory} from 'react-router';
+import { Link } from 'react-router';
 
 class Login extends Component {
 	constructor(props) {
@@ -18,7 +19,6 @@ class Login extends Component {
 		this.props.loginAction({
 			username: event.target[0].value,
 			password: event.target[1].value,
-			email: event.target[2].value
 		})
 		// console.log(event.target[0].value)
 		// console.log(event.target[1].value)
@@ -31,26 +31,27 @@ class Login extends Component {
 			var Message = "Nope!"
 		}
 		else {
-			Message = "Login Page"
+			Message = "Please Sign In"
 		}
 		return (
 			<div className="container">
-				<div className="row">
-				<h1>{Message}</h1>
+
 					<div className="Login">
-						<form className="login-form" onSubmit={this.processLogin}>
-							<input type="text" placeholder="username" />
-							<input type="text" placeholder="password" />
-							<input type="text" placeholder="email" />
-							<input type="submit" value="Login" />
+					<h1>{Message}</h1>
+						<form className="form-group login-form" onSubmit={this.processLogin}>
+							<div className="form-group">
+								<label for="username">Username</label>
+								<input type="text" className="form-control" placeholder="username" />
+							</div>
+							<div className="form-group">
+								<label for="password">Password</label>
+								<input type="password" className="form-control" placeholder="Password" />
+							</div>
+							
+							<button type="submit" className="btn btn-primary">Submit</button>
 						</form>
 
-						<div className="register">
-							New User?  <a href="#">Register Here</a>
-						</div>
-
 					</div>
-				</div>
 			</div>
 		)
 	}
