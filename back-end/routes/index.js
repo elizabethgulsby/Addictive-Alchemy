@@ -98,9 +98,31 @@ router.post('/register', function(req, res, next) {
 	
 });
 
+//query to grab color combinations
+router.get('/sideeffects', function(req, res, next) {
+	var purplePurpleQuery = "SELECT side_effect_id FROM side_effects WHERE first_color = 'Purple' AND second_color = 'Purple'";
+	connection.query(purplePurpleQuery, (error, results, fields) => {
+		if (error) throw error;
+		results.map((result, index) => {
+			purplePurpleArray.push(result);
+		})
+		res.json(purplePurpleArray);
+	})
+});
+
+
+
 module.exports = router;
 
-<<<<<<< HEAD
-=======
+/////////////////Functions, Arrays/////////////////
 
->>>>>>> 33688ace54da4ff8dc93e7a71bb92e265eaabff7
+//color combination arrays, each contains the side_effect_ids of the cards corresponding to the color combos
+var blueBlueArray = [];
+var purplePurpleArray = [];
+var greenGreenArray = [];
+var blueGreenArray = [];
+var bluePurpleArray = [];
+var purpleGreenArray = [];
+
+
+
