@@ -63,9 +63,12 @@
   font-size: 20px;
 }
 
+.slider {
+  /* font-family: 'Fenix', sans-serif; */
+  /* font-size: 20px; */
 
-.range-slider {
-  border: 1px solid black;
-  margin-top: 50px;
+
 }
+
+
 
