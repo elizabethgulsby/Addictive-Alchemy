@@ -9,7 +9,7 @@ class Home extends Component {
 				<Link to="/random"><img src="../Images/DealRandomSideEffects.png" /></Link>
 			</div>
 			<div className="buttons">
-				<Link to="/"><img src="../Images/DealWeightedSideEffects.png" /></Link>
+				<Link to="sideeffects"><img src="../Images/DealWeightedSideEffects.png" /></Link>
 			</div>
 			<div className="buttons">
 				<Link to="/"><img src="../Images/ViewSideEffects.png" /></Link>
