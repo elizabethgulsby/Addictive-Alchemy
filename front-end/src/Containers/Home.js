@@ -6,7 +6,7 @@ class Home extends Component {
     return (
 		<div className="content">
 			<div className="buttons">
-				<Link to="/"><img src="../Images/DealRandomSideEffects.png" /></Link>
+				<Link to="/random"><img src="../Images/DealRandomSideEffects.png" /></Link>
 			</div>
 			<div className="buttons">
 				<Link to="/"><img src="../Images/DealWeightedSideEffects.png" /></Link>

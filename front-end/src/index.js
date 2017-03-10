@@ -5,11 +5,12 @@ import './index.css';
 import reduxPromise from 'redux-promise';
 
 import {Router, IndexRoute, Route, hashHistory} from 'react-router';
-import Home from './Containers/Home';
-import Balancing from './Containers/Balancing';
-import SideEffects from './Containers/SideEffects';
+import Home from './Containers/Home.js';
+import Balancing from './Containers/Balancing.js';
+import SideEffects from './Containers/SideEffects.js';
 import Login from './Containers/Login.js';
 import Register from './Containers/Register.js';
+import Random from './Containers/Random.js';
 
 import {Provider} from 'react-redux';
 
@@ -30,6 +31,7 @@ ReactDOM.render(
 				<Route path='login' component={Login} />
 				<Route path='register' component={Register} />				
 				<Route path='balancing' component={Balancing} />
+				<Route path='random' component={Random} />
 				<Route path='sideeffects' component={SideEffects} />			
 			</Route>		  
 		</Router>
