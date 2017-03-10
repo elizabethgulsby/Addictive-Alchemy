@@ -20,6 +20,8 @@ import Reducers from './Reducers/index';
 //create the store to handle our state
 const theStoreWithMiddleware = applyMiddleware(reduxPromise)(createStore)(Reducers);
 
+
+
 ReactDOM.render(
 	<Provider store={theStoreWithMiddleware}>
 		<Router history={hashHistory} >
