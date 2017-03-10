@@ -7,7 +7,7 @@ class Card extends Component {
 	render(){
 	console.log(this.props);
 		return (
-			<div>{this.props.card.propertyOne}</div>
+			<div className="card col-sm-4">{this.props.card.steve}</div>
 		)
 	}
 }

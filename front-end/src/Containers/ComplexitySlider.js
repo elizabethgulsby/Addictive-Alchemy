@@ -19,7 +19,7 @@ class ComplexitySlider extends Component {
     render() {
         let { ComplexityValue } = this.state
         return (
-            <Slider value={ComplexityValue} orientation="vertical" onChange={this.handleOnChange}
+            <Slider value={ComplexityValue} orientation="horizontal" onChange={this.handleOnChange}
             min={1} max={5} step={1} />
         )
     }

@@ -100,7 +100,6 @@ router.post('/register', function(req, res, next) {
 
 module.exports = router;
 
-<<<<<<< HEAD
-=======
 
->>>>>>> 33688ace54da4ff8dc93e7a71bb92e265eaabff7
+
+

@@ -19,7 +19,7 @@ class SpeedSlider extends Component {
     render() {
         let { SpeedValue } = this.state
         return (
-            <Slider value={SpeedValue} orientation="vertical" onChange={this.handleOnChange}
+            <Slider value={SpeedValue} orientation="horizontal" onChange={this.handleOnChange}
             min={1} max={5} step={1} />
         )
     }
