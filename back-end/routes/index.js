@@ -106,7 +106,15 @@ router.get('/sideeffects', function(req, res, next) {
 		results.map((result, index) => {
 			purplePurpleArray.push(result);
 		})
-		res.json(purplePurpleArray);
+		// res.json(purplePurpleArray);
+	})
+	var blueBlueQuery = "SELECT side_effect_id FROM side_effects WHERE first_color = 'Blue' AND second_color = 'Blue'";
+	connection.query(blueBlueQuery, (error2, results2, fields2) => {
+		if (error2) throw error2;
+		results2.map((results2, index) => {
+			blueBlueArray.push(results2);
+		})
+		res.json(blueBlueArray);
 	})
 });
 
