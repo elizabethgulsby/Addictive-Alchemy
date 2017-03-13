@@ -116,15 +116,15 @@ router.get('/sideeffects', function(req, res, next) {
 				colorPairs.push(results[i].side_effect_id);
 				console.log("After push: " + colorPairs);			
 			}
-			res.json(colorPairs);
-			// return colorPairs;
+			
+			return colorPairs;
 			// colorPairs = results;
-			// res.json(colorPairs)
+			// res.json(colorPairs);
 		})
 	};
 
 	
-	// purplePurpleArray = getSideEffects('Purple', 'Purple');
+	purplePurpleArray = getSideEffects('Purple', 'Purple');
 	greenGreenArray = getSideEffects('Green', 'Green');
 
 	console.log("pp: " + purplePurpleArray);
