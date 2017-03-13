@@ -3,7 +3,8 @@ import {connect} from 'react-redux';
 import {bindActionCreators} from 'redux';
 import {hashHistory} from 'react-router';
 import { Link } from 'react-router';
-import CardAction from '../Actions/CardAction.js'
+import CardAction from '../Actions/CardAction.js';
+
 
 
 
@@ -32,11 +33,11 @@ class Card extends Component {
 	}
 	render(){
 		return (
-			<div className="col-sm-3 col-sm-offset-1">
-				<div className="lock-image" onClick={this.handleLock}>
+			<div className="main-card col-sm-3 col-sm-offset-1">
+				<div className="lock-image text-center" onClick={this.handleLock}>
 					<img src="../Images/LockBevel.png" />
 				</div>
-				<div className="card-image" onClick={this.handleFlip}>
+				<div className="card-image text-center" onClick={this.handleFlip}>
 					{this.props.card.cardImage}
 				</div>
 			</div>

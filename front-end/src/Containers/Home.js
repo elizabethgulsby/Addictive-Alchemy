@@ -6,20 +6,20 @@ class Home extends Component {
   render() {
     return (
 		<div className="content">
-			<div className="buttons">
+			<div className="buttons text-center col-sm-12">
 				<Link to="/random"><img src="../Images/DealRandomSideEffects.png" /></Link>
 			</div>
-			<div className="buttons">
+			<div className="buttons text-center col-sm-12">
 				<Link to="/balancing"><img src="../Images/DealWeightedSideEffects.png" /></Link>
 			</div>
-			<div className="buttons">
+			<div className="buttons text-center col-sm-12">
 				<Link to="/sideeffects"><img src="../Images/ViewSideEffects.png" /></Link>
 			</div>
-			<div className="buttons">
+			<div className="buttons text-center col-sm-12">
 				<Link to="/"><img src="../Images/About.png" /></Link>
 			</div>
 
-			<div className="container login-register">
+			<div className="container col-sm-12 text-left">
 				<Link to="/login" className="links">Login</Link>
 				<br />
 				<Link to="/register" className="links">Create Account</Link>

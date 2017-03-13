@@ -11,6 +11,152 @@ var dbResponse = [
     propertyOne: "value one",
     propertyTwo: "value two",
     cardImage: <img src="../Images/Base_Chain_Lightning_Front.png" />
+  	},
+  	{
+    propertyOne: "value one",
+    propertyTwo: "value two",
+    cardImage: <img src="../Images/Base_Chain_Lightning_Front.png" />
+  	},
+  	{
+    propertyOne: "value one",
+    propertyTwo: "value two",
+    cardImage: <img src="../Images/Base_Chain_Lightning_Front.png" />
+  	},
+  	{
+    propertyOne: "value one",
+    propertyTwo: "value two",
+    cardImage: <img src="../Images/Base_Chain_Lightning_Front.png" />
+  	},
+  	{
+    propertyOne: "value one",
+    propertyTwo: "value two",
+    cardImage: <img src="../Images/Base_Chain_Lightning_Front.png" />
+  	},
+  	{
+    propertyOne: "value one",
+    propertyTwo: "value two",
+    cardImage: <img src="../Images/Base_Chain_Lightning_Front.png" />
+  	},
+  	{
+    propertyOne: "value one",
+    propertyTwo: "value two",
+    cardImage: <img src="../Images/Base_Chain_Lightning_Front.png" />
+  	},
+  	{
+    propertyOne: "value one",
+    propertyTwo: "value two",
+    cardImage: <img src="../Images/Base_Chain_Lightning_Front.png" />
+  	},
+  	{
+    propertyOne: "value one",
+    propertyTwo: "value two",
+    cardImage: <img src="../Images/Base_Chain_Lightning_Front.png" />
+  	},{
+    propertyOne: "value one",
+    propertyTwo: "value two",
+    cardImage: <img src="../Images/Base_Chain_Lightning_Front.png" />
+  	},
+  	{
+    propertyOne: "value one",
+    propertyTwo: "value two",
+    cardImage: <img src="../Images/Base_Chain_Lightning_Front.png" />
+  	},
+  	{
+    propertyOne: "value one",
+    propertyTwo: "value two",
+    cardImage: <img src="../Images/Base_Chain_Lightning_Front.png" />
+  	},{
+    propertyOne: "value one",
+    propertyTwo: "value two",
+    cardImage: <img src="../Images/Base_Chain_Lightning_Front.png" />
+  	},
+  	{
+    propertyOne: "value one",
+    propertyTwo: "value two",
+    cardImage: <img src="../Images/Base_Chain_Lightning_Front.png" />
+  	},
+  	{
+    propertyOne: "value one",
+    propertyTwo: "value two",
+    cardImage: <img src="../Images/Base_Chain_Lightning_Front.png" />
+  	},
+  	{
+    propertyOne: "value one",
+    propertyTwo: "value two",
+    cardImage: <img src="../Images/Base_Chain_Lightning_Front.png" />
+  	},
+  	{
+    propertyOne: "value one",
+    propertyTwo: "value two",
+    cardImage: <img src="../Images/Base_Chain_Lightning_Front.png" />
+  	},
+  	{
+    propertyOne: "value one",
+    propertyTwo: "value two",
+    cardImage: <img src="../Images/Base_Chain_Lightning_Front.png" />
+  	},
+  	{
+    propertyOne: "value one",
+    propertyTwo: "value two",
+    cardImage: <img src="../Images/Base_Chain_Lightning_Front.png" />
+  	},
+  	{
+    propertyOne: "value one",
+    propertyTwo: "value two",
+    cardImage: <img src="../Images/Base_Chain_Lightning_Front.png" />
+  	},
+  	{
+    propertyOne: "value one",
+    propertyTwo: "value two",
+    cardImage: <img src="../Images/Base_Chain_Lightning_Front.png" />
+  	},
+  	{
+    propertyOne: "value one",
+    propertyTwo: "value two",
+    cardImage: <img src="../Images/Base_Chain_Lightning_Front.png" />
+  	},
+  	{
+    propertyOne: "value one",
+    propertyTwo: "value two",
+    cardImage: <img src="../Images/Base_Chain_Lightning_Front.png" />
+  	},
+  	{
+    propertyOne: "value one",
+    propertyTwo: "value two",
+    cardImage: <img src="../Images/Base_Chain_Lightning_Front.png" />
+  	},{
+    propertyOne: "value one",
+    propertyTwo: "value two",
+    cardImage: <img src="../Images/Base_Chain_Lightning_Front.png" />
+  	},
+  	{
+    propertyOne: "value one",
+    propertyTwo: "value two",
+    cardImage: <img src="../Images/Base_Chain_Lightning_Front.png" />
+  	},
+  	{
+    propertyOne: "value one",
+    propertyTwo: "value two",
+    cardImage: <img src="../Images/Base_Chain_Lightning_Front.png" />
+  	},{
+    propertyOne: "value one",
+    propertyTwo: "value two",
+    cardImage: <img src="../Images/Base_Chain_Lightning_Front.png" />
+  	},
+  	{
+    propertyOne: "value one",
+    propertyTwo: "value two",
+    cardImage: <img src="../Images/Base_Chain_Lightning_Front.png" />
+  	},
+  	{
+    propertyOne: "value one",
+    propertyTwo: "value two",
+    cardImage: <img src="../Images/Base_Chain_Lightning_Front.png" />
+  	},
+  	{
+    propertyOne: "value one",
+    propertyTwo: "value two",
+    cardImage: <img src="../Images/Base_Chain_Lightning_Front.png" />
   	}
 ];
 
@@ -35,7 +181,7 @@ class SideEffects extends Component{
 		})
 
 		return(
-			<div>
+			<div className="container">
 				{allSideEffects}
 			</div>
 		)
@@ -53,4 +199,4 @@ function mapDispatchToProps(dispatch) {
 		// cardAction: CardAction
 	}, dispatch)
 }
-export default connect(mapStateToProps, mapDispatchToProps)(Card);
+export default connect(mapStateToProps, mapDispatchToProps)(SideEffects);

@@ -53,7 +53,7 @@ class Random extends Component {
 			)
 		})
 		return (
-			<div className="random">	
+			<div className="container">	
 				{randomArray}
 			</div>
 			

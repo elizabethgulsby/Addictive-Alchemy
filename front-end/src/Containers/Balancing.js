@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import SpeedSlider from './SpeedSlider';
 import ComplexitySlider from './ComplexitySlider';
-
+import Weightedresults from './Weightedresults.js';
 import {Link} from 'react-router';
 import {connect} from 'react-redux';
 import {bindActionCreators} from 'redux';
@@ -46,6 +46,7 @@ class Balancing extends Component {
   				  </div>
               <div className="deal-weighted-effects text-center">
                   <Link to="weighted-results"><img src="/Images/DealWeightedSideEffects.png" /></Link>
+                 
               </div>
 
 	    		</div>

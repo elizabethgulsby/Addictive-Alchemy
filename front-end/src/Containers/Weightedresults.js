@@ -3,7 +3,7 @@ import Card from './Card';
 import {connect} from 'react-redux';
 import {bindActionCreators} from 'redux';
 import {hashHistory} from 'react-router';
-
+import WeightedAction from '../Actions/WeightedAction.js';
 
 
 
@@ -40,14 +40,12 @@ var responseFromDB = [
    cardImage: <img src="../Images/Base_Chain_Lightning_Front.png" />
  }
 
-]
+];
 
 class Weightedresults extends Component {
     constructor(props) {
-        super(props);
-        this.state = {
-            weightedArray
-        }
+        super(props)
+        
     }
     
     
@@ -56,10 +54,13 @@ class Weightedresults extends Component {
             weightedArray.push(        
                 <Card card={individualCard} key={index} />    
             )
+            console.log(weightedArray);
+
         })
         return(
+        
 
-                <div className="weighted-results-card">
+                <div className="container">
                     {weightedArray}
                 </div>
             
@@ -71,17 +72,17 @@ class Weightedresults extends Component {
 
 function mapStateToProps(state) {
     return {
-        // loginResponse: state.login
+        weightedResponse: state.weightedArray
     }
 }
 
 function mapDispatchToProps(dispatch) {
     return bindActionCreators({
-        // loginAction: LoginAction
+        weightAction: WeightedAction
     }, dispatch)
 }
 
-// export default connect(mapStateToProps, mapDispatchToProps)(Login);
 
 
-export default Weightedresults;
+
+export default connect(mapStateToProps, mapDispatchToProps)(Weightedresults);
