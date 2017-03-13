@@ -16,10 +16,10 @@
   height: 100%;
 }
 
-.card-image {
+/* .card-image {
   padding:  10px;
   display:  inline-block;
-}
+} */
 
 .buttons {
   text-align: center;
@@ -27,11 +27,11 @@
   padding-top: 5px;
 }
 
- .card-images, .lock-images {
+/*  .card-images, .lock-images {
   text-align: center;
   display:  block;
   padding: 0 0 5px 5px;
-}
+} */
 
 .Login, .Register {
   text-align: center;
@@ -63,11 +63,11 @@
   font-size: 20px;
 }
 
-.slider {
-  /* font-family: 'Fenix', sans-serif; */
-  /* font-size: 20px; */
 
 
+.lock-image img{
+  border-radius: 10%;
+  height: 120px;
 }
 
 

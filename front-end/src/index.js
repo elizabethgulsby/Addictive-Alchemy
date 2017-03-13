@@ -11,6 +11,7 @@ import SideEffects from './Containers/SideEffects.js';
 import Login from './Containers/Login.js';
 import Register from './Containers/Register.js';
 import Random from './Containers/Random.js';
+import Weightedresults from './Containers/Weightedresults';
 
 import {Provider} from 'react-redux';
 
@@ -31,6 +32,7 @@ ReactDOM.render(
 				<Route path='login' component={Login} />
 				<Route path='register' component={Register} />				
 				<Route path='balancing' component={Balancing} />
+				<Route path='weighted-results' component={Weightedresults} />
 				<Route path='random' component={Random} />
 				<Route path='sideeffects' component={SideEffects} />			
 			</Route>		  
