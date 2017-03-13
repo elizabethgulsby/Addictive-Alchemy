@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router';
+import Login from './Login.js'
 
 class Home extends Component {
   render() {
