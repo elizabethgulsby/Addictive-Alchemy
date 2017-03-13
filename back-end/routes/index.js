@@ -100,6 +100,9 @@ router.post('/register', function(req, res, next) {
 
 //query to grab color combinations
 router.get('/sideeffects', function(req, res, next) {
+
+	purplePurpleArray = getSideEffects('purple', 'purple');
+
 	var purplePurpleQuery = "SELECT side_effect_id FROM side_effects WHERE first_color = 'Purple' AND second_color = 'Purple'";
 	connection.query(purplePurpleQuery, (error, results, fields) => {
 		if (error) throw error;
@@ -125,12 +128,43 @@ module.exports = router;
 /////////////////Functions, Arrays/////////////////
 
 //color combination arrays, each contains the side_effect_ids of the cards corresponding to the color combos
-var blueBlueArray = [];
 var purplePurpleArray = [];
 var greenGreenArray = [];
-var blueGreenArray = [];
-var bluePurpleArray = [];
+var blueBlueArray = [];
 var purpleGreenArray = [];
+var bluePurpleArray = [];
+var blueGreenArray = [];
 
+
+//array that will hold all of the cards from a specific color combo; will not contain any other side effect ids other than the ones corresponding to one color combination at a time
+var cardPool = [];
+
+//function that will get side effects based on color pairing supplied; pushes all results matching this pairing onto the appropriate array
+function getSideEffects(firstColor, secondColor) {
+//add generic form of queries above in side effects here
+//return an array
+}
+
+//function to get speed weight of each card
+function getSpeedWeight(sideEffectId, preferredSpeedWeight) {
+//add formula here
+//return the card's official speed weight (Math.abs)
+}
+
+//function to get complexity weight of each card
+function getComplexityWeight(sideEffectId, preferredComplexityWeight) {
+//add formula here
+//return the card's official complexity weight (Math.abs)
+}
+
+//function to populate cardPool based on both weights
+function populateCardPool(sideEffectId, preferredSpeedWeight, preferredComplexityWeight) {
+	var weight = getSpeedWeight(sideEffectId, preferredSpeedWeight);
+	weight += getComplexityWeight(sideEffectId, preferredComplexityWeight);
+	//populates cardPool
+	for (let i = 0; i < weight; i++) {
+		cardPool.push(sideEffectId);
+	}
+}
 
 
