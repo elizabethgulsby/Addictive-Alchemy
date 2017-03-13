@@ -1,7 +1,8 @@
 //root reducer goes here
 import { combineReducers } from 'redux';
-import LoginReducer from './LoginReducer.js'
-import RegisterReducer from './RegisterReducer.js'
+import LoginReducer from './LoginReducer.js';
+import RegisterReducer from './RegisterReducer.js';
+import CardReducer from './CardReducer.js';
 
 
 const rootReducer = combineReducers({
