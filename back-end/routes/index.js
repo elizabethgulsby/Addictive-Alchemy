@@ -100,7 +100,7 @@ router.post('/register', function(req, res, next) {
 });
 
 //query to grab color combinations
-router.get('/sideeffects', function(req, res, next) {
+router.get('/weighted-results', function(req, res, next) {
 	//function that will get side effects based on color pairing supplied; pushes all results matching this pairing onto the appropriate array, which is returned
 	var colorPairs = [];
 	function getSideEffects(firstColor, secondColor) {
@@ -123,7 +123,7 @@ router.get('/sideeffects', function(req, res, next) {
 		})
 	};
 
-	
+
 	purplePurpleArray = getSideEffects('Purple', 'Purple');
 	greenGreenArray = getSideEffects('Green', 'Green');
 
