@@ -2,6 +2,7 @@ var express = require('express');
 var router = express.Router();
 var config = require('../config/config');
 var mysql = require('mysql');
+//var sideEffect = require('./SideEffectsTools.js');
 var connection = mysql.createConnection({
 	user: config.user,
 	password: config.password,
@@ -100,24 +101,65 @@ router.post('/register', function(req, res, next) {
 
 //query to grab color combinations
 router.get('/sideeffects', function(req, res, next) {
-
-	purplePurpleArray = getSideEffects('purple', 'purple');
-
-	var purplePurpleQuery = "SELECT side_effect_id FROM side_effects WHERE first_color = 'Purple' AND second_color = 'Purple'";
-	connection.query(purplePurpleQuery, (error, results, fields) => {
-		if (error) throw error;
-		results.map((result, index) => {
-			purplePurpleArray.push(result);
+	//function that will get side effects based on color pairing supplied; pushes all results matching this pairing onto the appropriate array, which is returned
+	var colorPairs = [];
+	function getSideEffects(firstColor, secondColor) {
+		console.log("hello" + firstColor + secondColor);
+		//query for each color pair
+		var colorQuery = "SELECT side_effect_id from side_effects where first_color = ? and second_color = ?";
+		connection.query(colorQuery, [firstColor, secondColor], (error, results, fields) => {
+			if (error) throw error;
+			console.log(results);
+			console.log("results side effect id " + results[1].side_effect_id);
+			for (var i = 0; i < results.length; i++) {
+				console.log("Before push: " + results[i].side_effect_id);
+				colorPairs.push(results[i].side_effect_id);
+				console.log("After push: " + colorPairs);			
+			}
+			res.json(colorPairs);
+			// return colorPairs;
+			// colorPairs = results;
+			// res.json(colorPairs)
 		})
-		// res.json(purplePurpleArray);
-	})
-	var blueBlueQuery = "SELECT side_effect_id FROM side_effects WHERE first_color = 'Blue' AND second_color = 'Blue'";
-	connection.query(blueBlueQuery, (error2, results2, fields2) => {
-		if (error2) throw error2;
-		results2.map((results2, index) => {
-			blueBlueArray.push(results2);
-		})
-		res.json(blueBlueArray);
+	};
+
+	
+	// purplePurpleArray = getSideEffects('Purple', 'Purple');
+	greenGreenArray = getSideEffects('Green', 'Green');
+
+	console.log("pp: " + purplePurpleArray);
+	
+	// greenGreenArray = getSideEffects('Green', 'Green');
+	// blueBlueArray = getSideEffects('Blue', 'Blue');
+	// purpleGreenArray = getSideEffects('Purple', 'Green');
+	// bluePurpleArray = getSideEffects('Blue', 'Purple');
+	// blueGreenArray = getSideEffects('Blue', 'Green');
+
+	// var purplePurpleQuery = "SELECT side_effect_id FROM side_effects WHERE first_color = 'Purple' AND second_color = 'Purple'";
+	// connection.query(purplePurpleQuery, (error, results, fields) => {
+	// 	if (error) throw error;
+	// 	results.map((result, index) => {
+	// 		purplePurpleArray.push(result);
+	// 	})
+	// 	// res.json(purplePurpleArray);
+	// })
+	// var blueBlueQuery = "SELECT side_effect_id FROM side_effects WHERE first_color = 'Blue' AND second_color = 'Blue'";
+	// connection.query(blueBlueQuery, (error2, results2, fields2) => {
+	// 	if (error2) throw error2;
+	// 	results2.map((results2, index) => {
+	// 		blueBlueArray.push(results2);
+	// 	})
+	// 	res.json(blueBlueArray);
+	// })
+	// console.log(purplePurpleArray);
+
+});
+
+//route to return all side effects on "View Side Effects" page
+router.get('/allsideeffects', function(req, res, next) {
+	var possibleOptionsQuery = "SELECT side_effect_name, image_natural, image_dangerous, speed_weight, complexity_weight FROM side_effects";
+	connection.query(possibleOptionsQuery, (error, results, fields) => {
+		res.json(results);
 	})
 });
 
@@ -139,15 +181,11 @@ var blueGreenArray = [];
 //array that will hold all of the cards from a specific color combo; will not contain any other side effect ids other than the ones corresponding to one color combination at a time
 var cardPool = [];
 
-//function that will get side effects based on color pairing supplied; pushes all results matching this pairing onto the appropriate array
-function getSideEffects(firstColor, secondColor) {
-//add generic form of queries above in side effects here
-//return an array
-}
 
 //function to get speed weight of each card
 function getSpeedWeight(sideEffectId, preferredSpeedWeight) {
 //add formula here
+
 //return the card's official speed weight (Math.abs)
 }
 
