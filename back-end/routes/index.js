@@ -101,57 +101,41 @@ router.post('/register', function(req, res, next) {
 
 //query to grab color combinations
 router.get('/weighted-results', function(req, res, next) {
-	//function that will get side effects based on color pairing supplied; pushes all results matching this pairing onto the appropriate array, which is returned
-	var colorPairs = [];
+	//function that will get side effects based on color pairing supplied
 	function getSideEffects(firstColor, secondColor) {
-		console.log("hello" + firstColor + secondColor);
-		//query for each color pair
-		var colorQuery = "SELECT side_effect_id from side_effects where first_color = ? and second_color = ?";
-		connection.query(colorQuery, [firstColor, secondColor], (error, results, fields) => {
-			if (error) throw error;
-			console.log(results);
-			console.log("results side effect id " + results[1].side_effect_id);
-			for (var i = 0; i < results.length; i++) {
-				console.log("Before push: " + results[i].side_effect_id);
-				colorPairs.push(results[i].side_effect_id);
-				console.log("After push: " + colorPairs);			
-			}
-			
-			return colorPairs;
-			// colorPairs = results;
-			// res.json(colorPairs);
-		})
-	};
+		var colorPairs = [];
+		return new Promise(function(resolve, reject) {
+			var colorQuery = "SELECT side_effect_id from side_effects where first_color='" + firstColor + "' and second_color='" + secondColor + "'";
+			connection.query(colorQuery, (error, results, fields) => {
+				if (error) return reject(error);
+				console.log("Results Length: " + results.length);
+				console.log("I am " + results[0].side_effect_id);
+					for (let i = 0; i < results.length; i++) {
+						colorPairs.push(results[i].side_effect_id);
+						console.log("After Push: " + colorPairs[i]);
+					}
+					// console.log("Resolve colorPairs: " + colorPairs);
+					resolve(colorPairs);
+				});
+				
+			});
+	}
 
-
-	purplePurpleArray = getSideEffects('Purple', 'Purple');
-	greenGreenArray = getSideEffects('Green', 'Green');
-
-	console.log("pp: " + purplePurpleArray);
-	
-	// greenGreenArray = getSideEffects('Green', 'Green');
-	// blueBlueArray = getSideEffects('Blue', 'Blue');
-	// purpleGreenArray = getSideEffects('Purple', 'Green');
-	// bluePurpleArray = getSideEffects('Blue', 'Purple');
-	// blueGreenArray = getSideEffects('Blue', 'Green');
-
-	// var purplePurpleQuery = "SELECT side_effect_id FROM side_effects WHERE first_color = 'Purple' AND second_color = 'Purple'";
-	// connection.query(purplePurpleQuery, (error, results, fields) => {
-	// 	if (error) throw error;
-	// 	results.map((result, index) => {
-	// 		purplePurpleArray.push(result);
-	// 	})
-	// 	// res.json(purplePurpleArray);
+	// var colors =['Purple', 'Green', 'Blue']
+	var masterColorPairs = [];
+	// colors.map((color, index) => {
+	// 	masterColorPairs.push(getSideEffects(color, color));
 	// })
-	// var blueBlueQuery = "SELECT side_effect_id FROM side_effects WHERE first_color = 'Blue' AND second_color = 'Blue'";
-	// connection.query(blueBlueQuery, (error2, results2, fields2) => {
-	// 	if (error2) throw error2;
-	// 	results2.map((results2, index) => {
-	// 		blueBlueArray.push(results2);
-	// 	})
-	// 	res.json(blueBlueArray);
-	// })
-	// console.log(purplePurpleArray);
+	masterColorPairs.push(getSideEffects('Purple', 'Purple'));
+	masterColorPairs.push(getSideEffects('Green', 'Green'));
+	masterColorPairs.push(getSideEffects('Blue', 'Blue'));
+	masterColorPairs.push(getSideEffects('Purple', 'Green'));
+	masterColorPairs.push(getSideEffects('Purple', 'Blue'));
+	masterColorPairs.push(getSideEffects('Green', 'Blue'));
+
+	Promise.all(masterColorPairs).then(contentsOfPromise => {
+		console.log(contentsOfPromise);
+	});
 
 });
 
@@ -164,18 +148,17 @@ router.get('/allsideeffects', function(req, res, next) {
 });
 
 
-
 module.exports = router;
 
 /////////////////Functions, Arrays/////////////////
 
 //color combination arrays, each contains the side_effect_ids of the cards corresponding to the color combos
-var purplePurpleArray = [];
-var greenGreenArray = [];
-var blueBlueArray = [];
-var purpleGreenArray = [];
-var bluePurpleArray = [];
-var blueGreenArray = [];
+// var purplePurpleArray = [];
+// var greenGreenArray = [];
+// var blueBlueArray = [];
+// var purpleGreenArray = [];
+// var purpleBlueArray = [];
+// var greenBlueArray = [];
 
 
 //array that will hold all of the cards from a specific color combo; will not contain any other side effect ids other than the ones corresponding to one color combination at a time
@@ -204,5 +187,8 @@ function populateCardPool(sideEffectId, preferredSpeedWeight, preferredComplexit
 		cardPool.push(sideEffectId);
 	}
 }
+
+// var NumberOfSpeedEntries = 5 - Math.abs(SpeedSliderSettting - CurrentCardSpeedWeight)
+// var NumberOfComplexityEntries = 5 - Math.abs(ComplexitySliderSetting - CurrentCardCompexityWeight)
 
 
