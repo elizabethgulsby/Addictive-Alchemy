@@ -23,7 +23,7 @@ class Card extends Component {
         this.setState({
             Locked: "True"
         })
-		console.log(this.props.state);
+		console.log("Iam teh lock");
 	}
 	handleFlip = function() {
 		console.log("I am teh flip");
