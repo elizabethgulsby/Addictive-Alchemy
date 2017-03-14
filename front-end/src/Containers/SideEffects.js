@@ -169,7 +169,7 @@ class SideEffects extends Component{
 	constructor(props) {
 		super(props);
 		this.state = {
-			dbResponse
+			allSideEffects
 		}
 	}
 	render(){
