@@ -8,34 +8,34 @@ import {hashHistory} from 'react-router';
 var randomArray = [];
 var responseFromDB = [
   {
-    propertyOne: "value one",
-    propertyTwo: "value two",
-    cardImage: <img src="../Images/Base_Chain_Lightning_Front.png" />
+    
+    cardImageFront: <img src="../Images/Base_Chain_Lightning_Front.png" />,
+    cardImageBack: <img src="../Images/Base_Chain_Lightning_Front.png" />
   },
   {
-    propertyOne: "value one",
-    propertyTwo: "value two",
-    cardImage: <img src="../Images/Base_Chain_Lightning_Front.png" />
+    
+    cardImageFront: <img src="../Images/Base_Chain_Lightning_Front.png" />,
+    cardImageBack: <img src="../Images/Base_Chain_Lightning_Front.png" />
   },
   {
-    propertyOne: "value one",
-    propertyTwo: "value two",
-    cardImage: <img src="../Images/Base_Chain_Lightning_Front.png" />
+    
+    cardImageFront: <img src="../Images/Base_Chain_Lightning_Front.png" />,
+    cardImageBack: <img src="../Images/Base_Chain_Lightning_Front.png" />
   },
   {
-    propertyOne: "value one",
-    propertyTwo: "value two",
-    cardImage: <img src="../Images/Base_Chain_Lightning_Front.png" />
+    
+    cardImageFront: <img src="../Images/Base_Chain_Lightning_Front.png" />,
+    cardImageBack: <img src="../Images/Base_Chain_Lightning_Front.png" />
   },
   {
-    propertyOne: "value one",
-    propertyTwo: "value two",
-    cardImage: <img src="../Images/Base_Chain_Lightning_Front.png" />
+    
+    cardImageFront: <img src="../Images/Base_Chain_Lightning_Front.png" />,
+    cardImageBack: <img src="../Images/Base_Chain_Lightning_Front.png" />
   },
   {
-    propertyOne: "value one",
-    propertyTwo: "value two",
-    cardImage: <img src="../Images/Base_Chain_Lightning_Front.png" />
+    
+    cardImageFront: <img src="../Images/Base_Chain_Lightning_Front.png" />,
+    cardImageBack: <img src="../Images/Base_Chain_Lightning_Front.png" />
   }
 
 ]

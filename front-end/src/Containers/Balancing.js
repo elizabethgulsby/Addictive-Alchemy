@@ -15,8 +15,8 @@ import {hashHistory} from 'react-router';
 
 
 class Balancing extends Component {
-	constructor(props, context) {
-        super(props, context)
+	constructor(props) {
+        super(props)
         this.state = {
         
         }
