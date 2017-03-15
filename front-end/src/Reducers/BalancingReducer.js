@@ -1,7 +1,7 @@
 export default function (state = [], action) {
 	switch (action.type) {
-		case "card":
-		console.log("CardReducer!");
+		case "balancing":
+		console.log("balancingReducer!");
 			return action.payload
 	}
 	return state;

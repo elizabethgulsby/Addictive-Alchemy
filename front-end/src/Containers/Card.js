@@ -1,9 +1,8 @@
 import React, { Component } from 'react';
-import {connect} from 'react-redux';
-import {bindActionCreators} from 'redux';
+
 import {hashHistory} from 'react-router';
 import { Link } from 'react-router';
-import CardAction from '../Actions/CardAction.js';
+
 
 
 
@@ -20,16 +19,28 @@ class Card extends Component {
 		
 	}
 	handleLock = function() {
-        this.setState({
-            Locked: "True"
-        })
-		console.log("Iam teh lock");
+		if(this.state.Locked === "False"){
+	        this.setState({
+	            Locked: "True"
+	        })
+	    }else if(this.state.Locked === "True"){
+	    	this.setState({
+	    		Locked: "False"
+	    	})
+	    }
+		// console.log(this.state);
 	}
 	handleFlip = function() {
-		console.log("I am teh flip");
-		this.setState({
-			Flipped: "True"
-		})
+		// console.log(this.state);
+		if(this.state.Flipped === "True" && this.state.Locked === "False"){
+			this.setState({
+				Flipped: "False"
+			})
+		}else if(this.state.Flipped === "False" && this.state.Locked === "False"){
+			this.setState({
+				Flipped: "True"
+			})
+		}
 	}
 	render(){
 		if (this.state.Flipped === "False" && this.state.Locked === "False"){
@@ -57,15 +68,5 @@ class Card extends Component {
 	}
 }
 
-function mapStateToProps(state) {
-	return {
-		cardResponse: state.card
-	}
-}
 
-function mapDispatchToProps(dispatch) {
-	return bindActionCreators({
-		cardAction: CardAction
-	}, dispatch)
-}
-export default connect(mapStateToProps, mapDispatchToProps)(Card);
+export default Card;

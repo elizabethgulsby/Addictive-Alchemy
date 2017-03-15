@@ -10,32 +10,32 @@ var responseFromDB = [
   {
     
     cardImageFront: <img src="../Images/Base_Chain_Lightning_Front.png" />,
-    cardImageBack: <img src="../Images/Base_Chain_Lightning_Front.png" />
+    cardImageBack: <img src="../Images/Base_Chain_Lightning_Back.png" />
   },
   {
     
     cardImageFront: <img src="../Images/Base_Chain_Lightning_Front.png" />,
-    cardImageBack: <img src="../Images/Base_Chain_Lightning_Front.png" />
+    cardImageBack: <img src="../Images/Base_Chain_Lightning_Back.png" />
   },
   {
     
     cardImageFront: <img src="../Images/Base_Chain_Lightning_Front.png" />,
-    cardImageBack: <img src="../Images/Base_Chain_Lightning_Front.png" />
+    cardImageBack: <img src="../Images/Base_Chain_Lightning_Back.png" />
   },
   {
     
     cardImageFront: <img src="../Images/Base_Chain_Lightning_Front.png" />,
-    cardImageBack: <img src="../Images/Base_Chain_Lightning_Front.png" />
+    cardImageBack: <img src="../Images/Base_Chain_Lightning_Back.png" />
   },
   {
     
     cardImageFront: <img src="../Images/Base_Chain_Lightning_Front.png" />,
-    cardImageBack: <img src="../Images/Base_Chain_Lightning_Front.png" />
+    cardImageBack: <img src="../Images/Base_Chain_Lightning_Back.png" />
   },
   {
     
     cardImageFront: <img src="../Images/Base_Chain_Lightning_Front.png" />,
-    cardImageBack: <img src="../Images/Base_Chain_Lightning_Front.png" />
+    cardImageBack: <img src="../Images/Base_Chain_Lightning_Back.png" />
   }
 
 ]

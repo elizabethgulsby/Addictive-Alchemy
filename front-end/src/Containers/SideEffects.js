@@ -170,7 +170,7 @@ class SideEffects extends Component{
     this.state = {
       Flipped: "False"
     }
-      this.handleFlip = this.handleFlip.bind(this);
+      // this.handleFlip = this.handleFlip.bind(this);
 	}
   handleFlip = function() {
     this.setState({
@@ -182,13 +182,14 @@ class SideEffects extends Component{
 
 		allSideEffectsPreComponent.map((individualCard, index) => {
 			allSideEffects.push(		
-				<Display card={individualCard} key={index} />	
+				<Display card={individualCard} key={index} onClick={this.handleFlip} />	
 			)
 		})
 
 		return(
-			<div className="container" onClick={this.handleFlip}>
-				{allSideEffects}
+			<div className="container" >
+      {allSideEffects}
+
 			</div>
 		)
 	}
