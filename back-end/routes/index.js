@@ -148,6 +148,7 @@ router.get('/weighted-results', function(req, res, next) {
 		cardPool.push(populateCardPool(allSideEffects[4], 1, 5));
 		cardPool.push(populateCardPool(allSideEffects[5], 1, 5));
 
+		//this needs to wait until the anonymous function in populateCardPool finishes - output will be an array of weighted arrays
 		Promise.all(cardPool).then(cardPool => {
 			res.json("Purple Purple: " + cardPool[0] + " Green Green: " + cardPool[1]);
 
@@ -245,6 +246,7 @@ router.get('/weighted-results', function(req, res, next) {
 					console.log("Card Pool: " + cardPool);
 
 				})
+				
 
 			}
 

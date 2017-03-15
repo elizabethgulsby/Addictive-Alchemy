@@ -4,7 +4,7 @@ import {connect} from 'react-redux';
 import {bindActionCreators} from 'redux';
 import 'react-rangeslider/lib/index.css';
 import Slider from 'react-rangeslider';
-
+// import BalancingAction from '../Actions/BalancingAction.js';
 
 
 
@@ -21,8 +21,8 @@ class Balancing extends Component {
     this.handleSpeedChange = this.handleSpeedChange.bind(this)
     this.handleComplexityChange = this.handleComplexityChange.bind(this)
     }
-  handleSettings = (event) =>{
 
+  handleSettings = (event) =>{
     console.log("Darn it")
   }
   
@@ -45,6 +45,7 @@ class Balancing extends Component {
   	render() {
 		   let { speedValue } = this.state
         let { complexityValue } = this.state
+        
 
 		
 	    	return (
@@ -75,13 +76,13 @@ class Balancing extends Component {
 }
 function mapStateToProps(state) {
   return {
-    
+    // balancingResponse: state.balancing
   }
 }
 
 function mapDispatchToProps(dispatch) {
   return bindActionCreators({
-    
+    // balancingAction: BalancingAction
   }, dispatch)
 }
 // console.log(currentArray)
