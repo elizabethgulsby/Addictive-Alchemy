@@ -226,10 +226,10 @@ router.get('/weighted-results', function(req, res, next) {
 
 				console.log("I am empty, see?" + cardPool);
 				var weight = 0;
-				//Gets the speed weight
-				var currentCardSpeedWeightQuery = "SELECT speed_weight, complexity_weight FROM side_effects WHERE side_effect_id = ?";
+				//Gets the speed/complexity weights
+				var currentCardWeightsQuery = "SELECT speed_weight, complexity_weight FROM side_effects WHERE side_effect_id = ?";
 				console.log("Side Effect Id Queried: " + sideEffectsArray[i]);
-				connection.query(currentCardSpeedWeightQuery, sideEffectsArray[i], (error, results, fields) => {
+				connection.query(currentCardWeightsQuery, sideEffectsArray[i], (error, results, fields) => {
 					// res.json(results);
 					if (error) return reject(error);
 
@@ -248,7 +248,7 @@ router.get('/weighted-results', function(req, res, next) {
 
 			}
 
-			//!!!!!Ask how I can turn this functions connection.query into a promise.
+			//!!!!!Ask how I can turn this functions connection.query into a promise. This Promise doesn't return like the previous ones.
 			//This resolve will be empty unless I can do a promise all with connection.query as well.
 			//This is because connection.query is creating an anonymous function, and all functions are async.
 			Promise.all(cardPool).then(cardPool => {
@@ -300,7 +300,7 @@ router.get('/weighted-results', function(req, res, next) {
 });
 
 //route to return all side effects on "View Side Effects" page
-router.get('/allsideeffects', function(req, res, next) {
+router.get('/sideeffects', function(req, res, next) {
 	var possibleOptionsQuery = "SELECT side_effect_name, image_natural, image_dangerous, speed_weight, complexity_weight FROM side_effects";
 	connection.query(possibleOptionsQuery, (error, results, fields) => {
 		res.json(results);
