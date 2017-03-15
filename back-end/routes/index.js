@@ -105,37 +105,197 @@ router.get('/weighted-results', function(req, res, next) {
 	function getSideEffects(firstColor, secondColor) {
 		var colorPairs = [];
 		return new Promise(function(resolve, reject) {
-			var colorQuery = "SELECT side_effect_id from side_effects where first_color='" + firstColor + "' and second_color='" + secondColor + "'";
-			connection.query(colorQuery, (error, results, fields) => {
+			var colorQuery = "SELECT side_effect_id from side_effects where first_color=? and second_color=?";
+			connection.query(colorQuery, [firstColor, secondColor], (error, results, fields) => {
 				if (error) return reject(error);
 				console.log("Results Length: " + results.length);
-				console.log("I am " + results[0].side_effect_id);
-					for (let i = 0; i < results.length; i++) {
-						colorPairs.push(results[i].side_effect_id);
-						console.log("After Push: " + colorPairs[i]);
+				// console.log("I am " + results[0].side_effect_id);
+					for (let u = 0; u < results.length; u++) {
+						colorPairs.push(results[u].side_effect_id);
+						// console.log("After Push: " + colorPairs[i]);
 					}
-					// console.log("Resolve colorPairs: " + colorPairs);
+					console.log("Resolve colorPairs: " + colorPairs);
 					resolve(colorPairs);
+					
 				});
 				
 			});
 	}
 
-	// var colors =['Purple', 'Green', 'Blue']
-	var masterColorPairs = [];
-	// colors.map((color, index) => {
-	// 	masterColorPairs.push(getSideEffects(color, color));
-	// })
-	masterColorPairs.push(getSideEffects('Purple', 'Purple'));
-	masterColorPairs.push(getSideEffects('Green', 'Green'));
-	masterColorPairs.push(getSideEffects('Blue', 'Blue'));
-	masterColorPairs.push(getSideEffects('Purple', 'Green'));
-	masterColorPairs.push(getSideEffects('Purple', 'Blue'));
-	masterColorPairs.push(getSideEffects('Green', 'Blue'));
 
-	Promise.all(masterColorPairs).then(contentsOfPromise => {
-		console.log(contentsOfPromise);
+
+	var allSideEffects = [];
+
+	//Pushes an array of matching side effects onto another array. 
+	allSideEffects.push(getSideEffects('Purple', 'Purple'));
+	allSideEffects.push(getSideEffects('Green', 'Green'));
+	allSideEffects.push(getSideEffects('Blue', 'Blue'));
+	allSideEffects.push(getSideEffects('Purple', 'Green'));
+	allSideEffects.push(getSideEffects('Purple', 'Blue'));
+	allSideEffects.push(getSideEffects('Green', 'Blue'));
+
+	var cardPool = [];
+
+	Promise.all(allSideEffects).then(allSideEffects => {
+		console.log("All Side Effects: " + allSideEffects.length);
+	
+
+		//hard-coded test integer values below; will be swapped for actual values being passed from slider (req.body?)
+		cardPool.push(populateCardPool(allSideEffects[0], 1, 5));
+		cardPool.push(populateCardPool(allSideEffects[1], 1, 5));
+		cardPool.push(populateCardPool(allSideEffects[2], 1, 5));
+		cardPool.push(populateCardPool(allSideEffects[3], 1, 5));
+		cardPool.push(populateCardPool(allSideEffects[4], 1, 5));
+		cardPool.push(populateCardPool(allSideEffects[5], 1, 5));
+
+		Promise.all(cardPool).then(cardPool => {
+			res.json("Purple Purple: " + cardPool[0] + " Green Green: " + cardPool[1]);
+
+		});
+
 	});
+
+	// Promise.all(greenGreenArray).then(greenGreenArray => {
+	// 	console.log("GG: " + greenGreenArray);
+	// 	for (let i = 0; i < greenGreenArray.length; i++) {
+	// 		//hard-coded test integer values below; will be swapped for actual values being passed from slider (req.body?)
+	// 		populateCardPool(cardPoolGG, greenGreenArray[i], 3, 5);
+	// 		console.log("Now I am " + cardPoolGG);
+	// 	}
+	// })
+
+	// Promise.all(blueBlueArray).then(blueBlueArray => {
+	// 	console.log("BB: " + blueBlueArray);
+	// 	for (let i = 0; i < blueBlueArray.length; i++) {
+	// 		//hard-coded test integer values below; will be swapped for actual values being passed from slider (req.body?)
+	// 		populateCardPool(cardPoolBB, blueBlueArray[i], 3, 5);
+	// 		console.log("Now I am " + cardPoolBB);
+	// 	}
+	// })
+
+	// Promise.all(purpleGreenArray).then(purpleGreenArray => {
+	// 	console.log("PG: " + purpleGreenArray);
+	// 	for (let i = 0; i < purpleGreenArray.length; i++) {
+	// 		//hard-coded test integer values below; will be swapped for actual values being passed from slider (req.body?)
+	// 		populateCardPool(cardPoolPG, purpleGreenArray[i], 3, 5);
+	// 		console.log("Now I am " + cardPoolPG);
+	// 	}
+	// })
+
+	// Promise.all(purpleBlueArray).then(purpleBlueArray => {
+	// 	console.log("PB: " + purpleBlueArray);
+	// 	for (let i = 0; i < purpleBlueArray.length; i++) {
+	// 		//hard-coded test integer values below; will be swapped for actual values being passed from slider (req.body?)
+	// 		populateCardPool(cardPoolPB, purpleBlueArray[i], 3, 5);
+	// 		console.log("Now I am " + cardPoolPB);
+	// 	}
+	// })
+
+	// Promise.all(greenBlueArray).then(greenBlueArray => {
+	// 	console.log("GB: " + greenBlueArray);
+	// 	for (let i = 0; i < greenBlueArray.length; i++) {
+	// 		//hard-coded test integer values below; will be swapped for actual values being passed from slider (req.body?)
+	// 		populateCardPool(cardPoolGB, greenBlueArray[i], 3, 5);
+	// 		console.log("Now I am " + cardPoolGB);
+	// 	}
+	// })
+
+
+
+
+	// Promise.all(masterColorPairs).then(contentsOfPromise => {
+	// 	console.log("Content of Promise: " + contentsOfPromise);
+	// });
+
+
+	//function to populate cardPool based on speed/complexity weights (passed to route by slider)
+	function populateCardPool(sideEffectsArray, preferredSpeedWeight, preferredComplexityWeight, callback) {
+	
+		var cardPool = [];
+
+		console.log("Side Effect Array Length: " + sideEffectsArray.length);
+		console.log("Side Effect Array: " + sideEffectsArray);
+
+
+		return new Promise(function(resolve, reject) {
+
+
+			for (let i = 0; i < sideEffectsArray.length; i++) {
+
+
+
+				console.log("I am empty, see?" + cardPool);
+				var weight = 0;
+				//Gets the speed weight
+				var currentCardSpeedWeightQuery = "SELECT speed_weight, complexity_weight FROM side_effects WHERE side_effect_id = ?";
+				console.log("Side Effect Id Queried: " + sideEffectsArray[i]);
+				connection.query(currentCardSpeedWeightQuery, sideEffectsArray[i], (error, results, fields) => {
+					// res.json(results);
+					if (error) return reject(error);
+
+					weight = 5 - Math.abs(preferredSpeedWeight - results[0].speed_weight);
+					weight += 5 - Math.abs(preferredComplexityWeight - results[0].complexity_weight);
+					console.log("Side Effect Id: " + sideEffectsArray[i] + " Weight: " + weight);
+
+					//populates cardPool
+					for (let e = 0; e < weight; e++) {
+						cardPool.push(sideEffectsArray[i]);
+					}
+
+					console.log("Card Pool: " + cardPool);
+
+				})
+
+			}
+
+			//!!!!!Ask how I can turn this functions connection.query into a promise.
+			//This resolve will be empty unless I can do a promise all with connection.query as well.
+			//This is because connection.query is creating an anonymous function, and all functions are async.
+			Promise.all(cardPool).then(cardPool => {
+				console.log("!!!Card Pool Final: " + cardPool);
+				resolve(cardPool);
+			})
+
+
+		});
+
+		// NOTE:
+		// Because
+
+		// connection.query(currentCardSpeedWeightQuery, sideEffectsArray[i], (error, results, fields) => {
+
+		// has an anonymous function in it, another async process is created. If we can wait for those to finish, then everything will output as json.
+
+		// The question to ask is how can you do something like a promise.all on anonymous functions? How can you wait till each of those database calls finish before you return the result of cardPool?
+
+
+
+
+
+		//return cardPool;
+	}
+
+	// //function to get speed weight of each card
+	// function getSpeedWeight(sideEffectId, preferredSpeedWeight) {
+	// 	var currentCardSpeedWeightQuery = "SELECT speed_weight FROM side_effects WHERE side_effect_id = ?";
+	// 	var currentCardSpeedWeight = 0;
+	// 	connection.query(currentCardSpeedWeightQuery, sideEffectId, (error, results, fields) => {
+	// 		// res.json(results);
+	// 		currentCardSpeedWeight = results[0].speed_weight;
+	// 		console.log("Results: " + currentCardSpeedWeight);
+	// 	})
+	// 	var NumberOfSpeedEntries = 5 - Math.abs(preferredSpeedWeight - currentCardSpeedWeight);
+	// 	//return the card's official speed weight (Math.abs)
+	// 	return NumberOfSpeedEntries;
+	// }
+
+	// //function to get complexity weight of each card
+	// function getComplexityWeight(sideEffectId, preferredComplexityWeight) {
+	// //add formula here
+	// //return the card's official complexity weight (Math.abs)
+	// 	return 2;
+	// }
+
 
 });
 
@@ -150,45 +310,5 @@ router.get('/allsideeffects', function(req, res, next) {
 
 module.exports = router;
 
-/////////////////Functions, Arrays/////////////////
-
-//color combination arrays, each contains the side_effect_ids of the cards corresponding to the color combos
-// var purplePurpleArray = [];
-// var greenGreenArray = [];
-// var blueBlueArray = [];
-// var purpleGreenArray = [];
-// var purpleBlueArray = [];
-// var greenBlueArray = [];
-
-
-//array that will hold all of the cards from a specific color combo; will not contain any other side effect ids other than the ones corresponding to one color combination at a time
-var cardPool = [];
-
-
-//function to get speed weight of each card
-function getSpeedWeight(sideEffectId, preferredSpeedWeight) {
-//add formula here
-
-//return the card's official speed weight (Math.abs)
-}
-
-//function to get complexity weight of each card
-function getComplexityWeight(sideEffectId, preferredComplexityWeight) {
-//add formula here
-//return the card's official complexity weight (Math.abs)
-}
-
-//function to populate cardPool based on both weights
-function populateCardPool(sideEffectId, preferredSpeedWeight, preferredComplexityWeight) {
-	var weight = getSpeedWeight(sideEffectId, preferredSpeedWeight);
-	weight += getComplexityWeight(sideEffectId, preferredComplexityWeight);
-	//populates cardPool
-	for (let i = 0; i < weight; i++) {
-		cardPool.push(sideEffectId);
-	}
-}
-
-// var NumberOfSpeedEntries = 5 - Math.abs(SpeedSliderSettting - CurrentCardSpeedWeight)
-// var NumberOfComplexityEntries = 5 - Math.abs(ComplexitySliderSetting - CurrentCardCompexityWeight)
 
 
