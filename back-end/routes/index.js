@@ -165,7 +165,7 @@ router.get('/weighted-results', function(req, res, next) {
 
 
 	//function to populate cardPool based on speed/complexity weights (passed to route by slider)
-	function populateCardPool(sideEffectsArray, preferredSpeedWeight, preferredComplexityWeight, callback) {
+	function populateCardPool(sideEffectsArray, preferredSpeedWeight, preferredComplexityWeight) {
 	
 		var cardPoolResult = [];
 
@@ -177,6 +177,7 @@ router.get('/weighted-results', function(req, res, next) {
 				// console.log("I am empty, see?" + cardPoolResult);
 				var weight = 0;
 				//Gets the speed/complexity weights
+				//Vulnerable to SQL injection - parameterize later
 				var currentCardWeightsQuery = "SELECT speed_weight, complexity_weight FROM side_effects WHERE side_effect_id in (" + sideEffectsArray + ")";
 
 				// console.log("Side Effect Id Queried: " + sideEffectsArray);
