@@ -108,13 +108,13 @@ router.get('/weighted-results', function(req, res, next) {
 			var colorQuery = "SELECT side_effect_id from side_effects where first_color=? and second_color=?";
 			connection.query(colorQuery, [firstColor, secondColor], (error, results, fields) => {
 				if (error) return reject(error);
-				console.log("Results Length: " + results.length);
+				// console.log("Results Length: " + results.length);
 				// console.log("I am " + results[0].side_effect_id);
 					for (let u = 0; u < results.length; u++) {
 						colorPairs.push(results[u].side_effect_id);
 						// console.log("After Push: " + colorPairs[i]);
 					}
-					console.log("Resolve colorPairs: " + colorPairs);
+					// console.log("Resolve colorPairs: " + colorPairs);
 					resolve(colorPairs);
 					
 				});
@@ -123,7 +123,7 @@ router.get('/weighted-results', function(req, res, next) {
 	}
 
 
-
+	console.log("");console.log("");console.log("");
 	var allSideEffects = [];
 
 	//Pushes an array of matching side effects onto another array. 
@@ -135,7 +135,7 @@ router.get('/weighted-results', function(req, res, next) {
 	allSideEffects.push(getSideEffects('Green', 'Blue'));
 
 	Promise.all(allSideEffects).then(allSideEffects => {
-		console.log("All Side Effects: " + allSideEffects.length);
+		// console.log("All Side Effects: " + allSideEffects.length);
 	
 
 		var cardPool = [];
@@ -149,9 +149,17 @@ router.get('/weighted-results', function(req, res, next) {
 
 		//this needs to wait until the anonymous function in populateCardPool finishes - output will be an array of weighted arrays (see cardPool.push() statements above)
 		Promise.all(cardPool).then(cardPool => {
-			res.json("Purple Purple: " + cardPool[0] + " Green Green: " + cardPool[1] + "Blue Blue: " + cardPool[2] + "Purple Green: " + cardPool[3] + "Purple Blue: " + cardPool[4] + "Green Blue: " + cardPool[5]);
+			// res.json("Purple Purple: " + cardPool[0] + " Green Green: " + cardPool[1] + "Blue Blue: " + cardPool[2] + "Purple Green: " + cardPool[3] + "Purple Blue: " + cardPool[4] + "Green Blue: " + cardPool[5]);
+
+			var finalSideEffects = [];
+			console.log("Card Pool Result: " + cardPool);
+			finalSideEffects = selectFinalSideEffects(cardPool);
+
+			//!!!!!!!!!!!!THIS IS THE FINAL SET OF WEIGHTED RESULTS!!!!!!!!!!!!!!!!!
+			res.json("Final Side Effects: " + finalSideEffects);
 
 		});
+
 
 	});
 
@@ -161,24 +169,24 @@ router.get('/weighted-results', function(req, res, next) {
 	
 		var cardPoolResult = [];
 
-		console.log("Side Effect Array Length: " + sideEffectsArray.length);
-		console.log("Side Effect Array: " + sideEffectsArray);
+		// console.log("Side Effect Array Length: " + sideEffectsArray.length);
+		// console.log("Side Effect Array: " + sideEffectsArray);
 
 
 		return new Promise(function(resolve, reject) {
-				console.log("I am empty, see?" + cardPoolResult);
+				// console.log("I am empty, see?" + cardPoolResult);
 				var weight = 0;
 				//Gets the speed/complexity weights
 				var currentCardWeightsQuery = "SELECT speed_weight, complexity_weight FROM side_effects WHERE side_effect_id in (" + sideEffectsArray + ")";
 
-				console.log("Side Effect Id Queried: " + sideEffectsArray);
+				// console.log("Side Effect Id Queried: " + sideEffectsArray);
 				connection.query(currentCardWeightsQuery, (error, results, fields) => {
 					if (error) return reject(error);
 
 					for (let i = 0; i < results.length; i++) {
 						weight = 5 - Math.abs(preferredSpeedWeight - results[i].speed_weight);
 						weight += 5 - Math.abs(preferredComplexityWeight - results[i].complexity_weight);
-						console.log("Side Effect Id: " + sideEffectsArray[i] + " Weight: " + weight);
+						// console.log("Side Effect Id: " + sideEffectsArray[i] + " Weight: " + weight);
 					
 						//populates cardPool with sideEffectsArray query results post-weight calculations
 						for (let e = 0; e < weight; e++) {
@@ -195,7 +203,30 @@ router.get('/weighted-results', function(req, res, next) {
 
 	}
 
+	//randomly select the final side effects.
+	function selectFinalSideEffects(weightedCardPool) {
+
+		var finalPick = [];
+
+		console.log("weightedCardPool.length: " + weightedCardPool.length);
+		for (let i = 0; i < weightedCardPool.length; i++) {
+			console.log("i: " + i);
+			var pick = Math.floor(Math.random() * weightedCardPool[i].length);
+			console.log("Pick: " + pick);
+			finalPick.push(weightedCardPool[i][pick]);
+			console.log("Final Pick: " + finalPick);
+		}
+			
+		return finalPick;
+
+	}
+
+
+
 });
+
+
+
 
 //route to return all side effects on "View Side Effects" page
 router.get('/sideeffects', function(req, res, next) {
