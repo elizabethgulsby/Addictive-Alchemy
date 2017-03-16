@@ -7,16 +7,16 @@ class Home extends Component {
     return (
 		<div className="content">
 			<div className="buttons text-center col-sm-12">
-				<Link to="/random"><img src="../Images/DealRandomSideEffects.png" /></Link>
+				<Link to="/random"><img src="../Images/DealRandomSideEffects.png" role="presentation" /></Link>
 			</div>
 			<div className="buttons text-center col-sm-12">
-				<Link to="/balancing"><img src="../Images/DealWeightedSideEffects.png" /></Link>
+				<Link to="/balancing"><img src="../Images/DealWeightedSideEffects.png" role="presentation" /></Link>
 			</div>
 			<div className="buttons text-center col-sm-12">
-				<Link to="/sideeffects"><img src="../Images/ViewSideEffects.png" /></Link>
+				<Link to="/sideeffects"><img src="../Images/ViewSideEffects.png" role="presentation" /></Link>
 			</div>
 			<div className="buttons text-center col-sm-12">
-				<Link to="/"><img src="../Images/About.png" /></Link>
+				<Link to="/"><img src="../Images/About.png" role="presentation" /></Link>
 			</div>
 
 			<div className="container col-sm-12 text-left">

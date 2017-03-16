@@ -43,43 +43,43 @@ var responseFromDB = [
 ];
 
 class Weightedresults extends Component {
-    constructor(props) {
-        super(props)
-        
-    }
-    
-    
-    render(){
-        responseFromDB.map((individualCard, index) => {
-            weightedArray.push(        
-                <Card card={individualCard} key={index} />    
-            )
+	constructor(props) {
+		super(props)
+		
+	}
+	
+	
+	render(){
+		responseFromDB.map((individualCard, index) => {
+			weightedArray.push(        
+				<Card card={individualCard} key={index} />    
+			)
 
 
-        })
-        return(
-        
+		})
+		return(
+		
 
-                <div className="container">
-                    {weightedArray}
-                </div>
-            
-        )
-    }
+				<div className="container">
+					{weightedArray}
+				</div>
+			
+		)
+	}
 }
 
 
 
 function mapStateToProps(state) {
-    return {
-        weightedResponse: state.weightedArray
-    }
+	return {
+		weightedResponse: state.weightedArray
+	}
 }
 
 function mapDispatchToProps(dispatch) {
-    return bindActionCreators({
-        weightAction: WeightedAction
-    }, dispatch)
+	return bindActionCreators({
+		weightAction: WeightedAction
+	}, dispatch)
 }
 
 

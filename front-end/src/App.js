@@ -11,7 +11,7 @@ class App extends Component {
       <div className="app container">
         <div className="row">
           <div className="logo text-left col-sm-6">
-            <Link to="/"><img src="/Images/Mix_C14004_Logo_Game_words.png" /></Link>
+            <Link to="/"><img src="/Images/Mix_C14004_Logo_Game_words.png" role="presentation" /></Link>
           </div>
           <div className="workbench text-right col-sm-6">
             Side Effects <br />Workbench  

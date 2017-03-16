@@ -1,11 +1,6 @@
 import React, { Component } from 'react';
-
 import {hashHistory} from 'react-router';
 import { Link } from 'react-router';
-
-
-
-
 
 class Card extends Component {
 	constructor(props) {
@@ -15,8 +10,7 @@ class Card extends Component {
 			Flipped: "False"
 		}
 	this.handleLock = this.handleLock.bind(this);
-	this.handleFlip = this.handleFlip.bind(this);
-		
+	this.handleFlip = this.handleFlip.bind(this);	
 	}
 	handleLock = function() {
 		if(this.state.Locked === "False"){
@@ -28,10 +22,8 @@ class Card extends Component {
 	    		Locked: "False"
 	    	})
 	    }
-		// console.log(this.state);
 	}
 	handleFlip = function() {
-		// console.log(this.state);
 		if(this.state.Flipped === "True" && this.state.Locked === "False"){
 			this.setState({
 				Flipped: "False"
