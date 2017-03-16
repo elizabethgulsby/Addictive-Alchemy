@@ -31,9 +31,10 @@ ReactDOM.render(
 				<IndexRoute component={Home} />		
 				<Route path='login' component={Login} />
 				<Route path='register' component={Register} />				
-				<Route path='balancing' component={Balancing} />
-				<Route path='weighted-results' component={Weightedresults} />
-				<Route path='random' component={Random} />
+				<Route path='balancing' component={Balancing}>
+					<Route path='weighted-results' component={Weightedresults} />
+					<Route path='random' component={Random} />
+				</Route>
 				<Route path='sideeffects' component={SideEffects} />			
 			</Route>		  
 		</Router>
