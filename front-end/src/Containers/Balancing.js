@@ -4,11 +4,8 @@ import {connect} from 'react-redux';
 import {bindActionCreators} from 'redux';
 import 'react-rangeslider/lib/index.css';
 import Slider from 'react-rangeslider';
-// import BalancingAction from '../Actions/BalancingAction.js';
-
-
-
-
+import BalancingAction from '../Actions/BalancingAction.js';
+import Weightedresults from './Weightedresults.js';
 
 
 class Balancing extends Component {
@@ -20,16 +17,23 @@ class Balancing extends Component {
         }
     this.handleSpeedChange = this.handleSpeedChange.bind(this)
     this.handleComplexityChange = this.handleComplexityChange.bind(this)
+    this.handleSettings = this.handleSettings.bind(this)
     }
 
   handleSettings = (event) =>{
     console.log("Darn it")
+    var speed_value =  this.state.speedValue;
+    var complexity_value = this.state.complexityValue
+    this.props.balancingAction({
+      speed_value: speed_value,
+      complexity_value: complexity_value
+    })
   }
   
   handleSpeedChange = (value) => {
-    this.setState({
-        speedValue: value
-    })
+      this.setState({
+          speedValue: value
+      })
     // console.log(this.state.speedValue);
   }
 
@@ -45,7 +49,12 @@ class Balancing extends Component {
   	render() {
 		   let { speedValue } = this.state
         let { complexityValue } = this.state
-        
+
+        // var sideEffectsOutput = [];
+        // for (var i = 0; i < this.props.balancingResponse.FinalSideEffects.length; i++) {
+        //   sideEffectsOutput.push(this.props.balancingResponse.FinalSideEffects[i]);
+        // }
+
 
 		
 	    	return (
@@ -65,10 +74,13 @@ class Balancing extends Component {
                 </div>
   				  </div>
               <div className="deal-weighted-effects text-center">
-                  <Link to="weighted-results" onClick={this.handleSettings}><img src="/Images/DealWeightedSideEffects.png" /></Link>
+                  <img onClick={this.handleSettings} src="/Images/DealWeightedSideEffects.png" />
                  
               </div>
-
+              <div className="results">
+                <Weightedresults />
+                {this.props.children}
+              </div>
 	    		</div>
 			)
 	    	
@@ -76,17 +88,17 @@ class Balancing extends Component {
 }
 function mapStateToProps(state) {
   return {
-    // balancingResponse: state.balancing
+    balancingResponse: state.balancing
   }
 }
 
 function mapDispatchToProps(dispatch) {
   return bindActionCreators({
-    // balancingAction: BalancingAction
+    balancingAction: BalancingAction
   }, dispatch)
 }
 // console.log(currentArray)
 
 
 
-export default Balancing;
+export default connect(mapStateToProps, mapDispatchToProps)(Balancing);

@@ -3,7 +3,9 @@ import Card from './Card';
 import {connect} from 'react-redux';
 import {bindActionCreators} from 'redux';
 import {hashHistory} from 'react-router';
-import WeightedAction from '../Actions/WeightedAction.js';
+// import WeightedAction from '../Actions/WeightedAction.js';
+// import BalancingAction from '../Actions/BalancingAction.js'
+// import BalancingReducer from '../Reducers/BalancingReducer.js'
 
 
 
@@ -45,8 +47,12 @@ var responseFromDB = [
 class Weightedresults extends Component {
     constructor(props) {
         super(props)
+        this.state = {
+
+        }
         
     }
+    
     
     
     render(){
@@ -72,17 +78,19 @@ class Weightedresults extends Component {
 
 function mapStateToProps(state) {
     return {
-        weightedResponse: state.weightedArray
+        // weightedResponse: state.weightedArray
+        // balancingResponse: state.balancing
     }
 }
 
 function mapDispatchToProps(dispatch) {
     return bindActionCreators({
-        weightAction: WeightedAction
+        // weightAction: WeightedAction
+        // balancingAction: BalancingAction
     }, dispatch)
 }
 
 
 
 
-export default connect(mapStateToProps, mapDispatchToProps)(Weightedresults);
+export default Weightedresults;

@@ -100,12 +100,16 @@ router.post('/register', function(req, res, next) {
 });
 
 //query to grab color combinations
-router.get('/weighted-results', function(req, res, next) {
+router.post('/weighted-results', function(req, res, next) {
+	var speedweight = req.body.speed_value;
+	var complexityweight = req.body.complexity_value;
+	console.log(speedweight);
+	console.log(complexityweight);
 	//function that will get side effects based on color pairing supplied
 	function getSideEffects(firstColor, secondColor) {
 		var colorPairs = [];
 		return new Promise(function(resolve, reject) {
-			var colorQuery = "SELECT side_effect_id from side_effects where first_color=? and second_color=?";
+			var colorQuery = "SELECT side_effect_id, image_natural, image_dangerous from side_effects where first_color=? and second_color=?";
 			connection.query(colorQuery, [firstColor, secondColor], (error, results, fields) => {
 				if (error) return reject(error);
 				// console.log("Results Length: " + results.length);
@@ -140,12 +144,12 @@ router.get('/weighted-results', function(req, res, next) {
 
 		var cardPool = [];
 		//hard-coded test integer values below; will be swapped for actual values being passed from slider (req.body?)
-		cardPool.push(populateCardPool(allSideEffects[0], 1, 5));
-		cardPool.push(populateCardPool(allSideEffects[1], 1, 5));
-		cardPool.push(populateCardPool(allSideEffects[2], 1, 5));
-		cardPool.push(populateCardPool(allSideEffects[3], 1, 5));
-		cardPool.push(populateCardPool(allSideEffects[4], 1, 5));
-		cardPool.push(populateCardPool(allSideEffects[5], 1, 5));
+		cardPool.push(populateCardPool(allSideEffects[0], speedweight, complexityweight));
+		cardPool.push(populateCardPool(allSideEffects[1], speedweight, complexityweight));
+		cardPool.push(populateCardPool(allSideEffects[2], speedweight, complexityweight));
+		cardPool.push(populateCardPool(allSideEffects[3], speedweight, complexityweight));
+		cardPool.push(populateCardPool(allSideEffects[4], speedweight, complexityweight));
+		cardPool.push(populateCardPool(allSideEffects[5], speedweight, complexityweight));
 
 		//this needs to wait until the anonymous function in populateCardPool finishes - output will be an array of weighted arrays (see cardPool.push() statements above)
 		Promise.all(cardPool).then(cardPool => {
@@ -156,7 +160,9 @@ router.get('/weighted-results', function(req, res, next) {
 			finalSideEffects = selectFinalSideEffects(cardPool);
 
 			//!!!!!!!!!!!!THIS IS THE FINAL SET OF WEIGHTED RESULTS!!!!!!!!!!!!!!!!!
-			res.json("Final Side Effects: " + finalSideEffects);
+			res.json({
+				FinalSideEffects: finalSideEffects
+			});
 
 		});
 
@@ -164,9 +170,9 @@ router.get('/weighted-results', function(req, res, next) {
 	});
 
 
-	//function to populate cardPool based on speed/complexity weights (passed to route by slider)
+	//function to populate cardPool based on speed/complexity weights (passed to route by slider) - will return a weighted array of color arrays
 	function populateCardPool(sideEffectsArray, preferredSpeedWeight, preferredComplexityWeight) {
-	
+		
 		var cardPoolResult = [];
 
 		// console.log("Side Effect Array Length: " + sideEffectsArray.length);
@@ -178,7 +184,7 @@ router.get('/weighted-results', function(req, res, next) {
 				var weight = 0;
 				//Gets the speed/complexity weights
 				//Vulnerable to SQL injection - parameterize later
-				var currentCardWeightsQuery = "SELECT speed_weight, complexity_weight FROM side_effects WHERE side_effect_id in (" + sideEffectsArray + ")";
+				var currentCardWeightsQuery = "SELECT speed_weight, complexity_weight, image_natural, image_dangerous FROM side_effects WHERE side_effect_id in (" + sideEffectsArray + ")";
 
 				// console.log("Side Effect Id Queried: " + sideEffectsArray);
 				connection.query(currentCardWeightsQuery, (error, results, fields) => {
