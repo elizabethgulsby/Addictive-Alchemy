@@ -1,9 +1,41 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router';
-import Login from './Login.js'
+import {connect} from 'react-redux';
+import {bindActionCreators} from 'redux';
+import Login from './Login.js';
+import LoginAction from '../Actions/LoginAction.js';
+import LogoutAction from '../Actions/LogoutAction.js';
 
 class Home extends Component {
-  render() {
+	constructor(props) {
+		super(props);
+		this.state = {
+			isLoggedIn: false
+		}
+		this.handleLogout = this.handleLogout.bind(this);
+	}
+
+	handleLogout() {
+		this.props.loginAction({
+			isLoggedIn: false
+		})
+	}
+
+
+  	render() {
+	  	var loggedInResult = 'Login';
+	  	var createAccountOrLogout = 'CreateAccount'
+	  	var Message = 'Please Sign In'
+	  	if (this.props.loginResponse !== null) {
+	  		if (this.props.loginResponse.isLoggedIn) {
+	  			loggedInResult = "Hi, " + this.props.loginResponse.username + "!"
+	  			createAccountOrLogout = <Link to="/" className="links" onClick={this.handleLogout}>Logout</Link>
+	  		}
+	  		console.log(loggedInResult);
+	  		console.log(this.props.loginResponse);
+
+  	}
+  
     return (
 		<div className="content">
 			<div className="buttons text-center col-sm-12">
@@ -20,13 +52,26 @@ class Home extends Component {
 			</div>
 
 			<div className="container col-sm-12 text-left">
-				<Link to="/login" className="links">Login</Link>
+				<Link to="/login" className="links">{loggedInResult}</Link>
 				<br />
-				<Link to="/register" className="links">Create Account</Link>
+				<Link to="/register" className="links">{createAccountOrLogout}</Link>
 			</div>
 		</div>
     );
   }
 }
 
-export default Home;
+function mapStateToProps(state) {
+	return {
+		loginResponse: state.login
+	}
+}
+
+function mapDispatchToProps(dispatch) {
+	return bindActionCreators({
+		loginAction: LoginAction,
+		logoutAction: LogoutAction
+	}, dispatch)
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(Home);
