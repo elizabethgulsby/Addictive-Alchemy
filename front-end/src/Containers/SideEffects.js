@@ -5,7 +5,7 @@ import {connect} from 'react-redux';
 import {bindActionCreators} from 'redux';
 import {hashHistory} from 'react-router';
 
-var allSideEffects = [];
+// var allSideEffects = [];
 var allSideEffectsPreComponent = [
   	{
   cardImageBack: <img src="../Images/Base_Chain_Lightning_Back.png" role="presentation" />,
@@ -145,7 +145,7 @@ class SideEffects extends Component{
 	}
   
 	render(){
-
+		var allSideEffects = [];
 		allSideEffectsPreComponent.map((individualCard, index) => {
 			allSideEffects.push(		
 				<Display card={individualCard} key={index} />	

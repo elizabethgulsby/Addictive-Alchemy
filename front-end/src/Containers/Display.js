@@ -4,40 +4,34 @@ class Display extends Component{
 	constructor(props) {
 		super(props)
 	this.state = {
-			Locked: "False",
-			Flipped: "False"
+			Flipped: false
 		}
 	this.handleFlip = this.handleFlip.bind(this);
 	}
 	handleFlip = function() {
-		// console.log(this.state);
-		if(this.state.Flipped === "True" && this.state.Locked === "False"){
+		if(this.state.Flipped === true){
 			this.setState({
-				Flipped: "False"
-			})
-		}else if(this.state.Flipped === "False" && this.state.Locked === "False"){
+				Flipped: false
+		})
+		}else if(this.state.Flipped === false){
 			this.setState({
-				Flipped: "True"
+				Flipped: true
 			})
 		}
 	}
 	render(){
-		if (this.state.Flipped === "False"){
-			return (
-				<div className="main-card col-sm-3 col-sm-offset-1">
-					<div className="card-image text-center" onClick={this.handleFlip}>
-						{this.props.card.cardImageBack}
-					</div>
+		if(this.state.Flipped === true){
+			var image = this.props.card.cardImageBack	
+		}else if(this.state.Flipped ===false){
+			var image = this.props.card.cardImageFront;
+		}
+		return (
+			<div className="main-card col-sm-3 col-sm-offset-1">
+				<div className="card-image text-center" onClick={this.handleFlip}>
+					{image}
 				</div>
-			)
-		}else 
-			return (
-				<div className="main-card col-sm-3 col-sm-offset-1">
-					<div className="card-image text-center" onClick={this.handleFlip}>
-						{this.props.card.cardImageFront}
-					</div>
-				</div>
-			)
+			</div>
+		)
 	}
 }
 

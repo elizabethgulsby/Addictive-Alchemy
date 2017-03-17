@@ -5,7 +5,7 @@ import {connect} from 'react-redux';
 import {bindActionCreators} from 'redux';
 import {hashHistory} from 'react-router';
 
-var randomArray = [];
+
 var responseFromDB = [
   {
     
@@ -47,6 +47,7 @@ class Random extends Component {
 	}
 	
 		render(){
+    var randomArray = [];
 		responseFromDB.map((individualCard, index) => {
 			randomArray.push(		
 				<Card card={individualCard} key={index} />	

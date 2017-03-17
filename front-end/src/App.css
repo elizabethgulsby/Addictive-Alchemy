@@ -43,12 +43,23 @@ Body {
   border-radius: 10%;
 }
 .card-image{
-  border: 1px solid black;
+
 }
 
 .main-card{
   margin-bottom: 35px;
-  border: 1px solid red;
-
 }
+
+.locked{
+  transform: 
+    translate(20%,350%)
+    /* scale(1.3, 1.3) */
+    /* rotate(90deg) */
+}
+.locked , .unlocked{
+
+  transition: 1s;
+  transition-timing-function: ease;
+}
+
 

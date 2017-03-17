@@ -6,57 +6,65 @@ class Card extends Component {
 	constructor(props) {
 		super(props)
 		this.state = {
-			Locked: "False",
-			Flipped: "False"
+			Locked: false,
+			Flipped: false
 		}
 	this.handleLock = this.handleLock.bind(this);
 	this.handleFlip = this.handleFlip.bind(this);	
 	}
+
 	handleLock = function() {
-		if(this.state.Locked === "False"){
+		console.log("im locking")
+		if(this.state.Locked === false){
 	        this.setState({
-	            Locked: "True"
+	            Locked: true
+
 	        })
-	    }else if(this.state.Locked === "True"){
+	    }else if(this.state.Locked === true){
 	    	this.setState({
-	    		Locked: "False"
+	    		Locked: false
+
 	    	})
 	    }
 	}
+
 	handleFlip = function() {
-		if(this.state.Flipped === "True" && this.state.Locked === "False"){
-			this.setState({
-				Flipped: "False"
+		console.log("flipping" + this.state.Locked + this.state.Flipped);
+		if(this.state.Locked === false){
+			if(this.state.Flipped === true){
+				this.setState({
+					Flipped: false
 			})
-		}else if(this.state.Flipped === "False" && this.state.Locked === "False"){
-			this.setState({
-				Flipped: "True"
-			})
+		
+			}else if(this.state.Flipped === false){
+				this.setState({
+					Flipped: true
+				})
+			}
 		}
 	}
 	render(){
-		if (this.state.Flipped === "False" && this.state.Locked === "False"){
-			return (
-				<div className="main-card col-sm-3 col-sm-offset-1">
-					<div className="lock-image text-center" >
-						<img src="../Images/LockBevel.png" onClick={this.handleLock} role="presentation" />
-					</div>
-					<div className="card-image text-center" onClick={this.handleFlip}>
-						{this.props.card.cardImageBack}
-					</div>
+			if(this.state.Locked === true){
+				var cardStatus = "locked lock-image text-center";				
+			}else if(this.state.Locked === false){
+				var cardStatus = "unlocked lock-image text-center";
+			}
+		
+			if(this.state.Flipped === true){
+				var image = this.props.card.cardImageBack	
+			}else if(this.state.Flipped ===false){
+				var image = this.props.card.cardImageFront;
+			}
+		return (
+			<div className="main-card col-sm-3 col-sm-offset-1">
+				<div className={cardStatus} onClick={this.handleLock}>
+					<img src="../Images/LockBevel.png" role="presentation" />
 				</div>
-			)
-		}else 
-			return (
-				<div className="main-card col-sm-3 col-sm-offset-1">
-					<div className="lock-image text-center" onClick={this.handleLock}>
-						<img src="../Images/LockBevel.png" role="presentation" />
-					</div>
-					<div className="card-image text-center" onClick={this.handleFlip}>
-						{this.props.card.cardImageFront}
-					</div>
+				<div className="card-image text-center" onClick={this.handleFlip}>
+					{image}
 				</div>
-			)
+			</div>
+		)
 	}
 }
 
