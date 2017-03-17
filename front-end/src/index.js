@@ -33,8 +33,8 @@ ReactDOM.render(
 				<Route path='register' component={Register} />				
 				<Route path='balancing' component={Balancing}>
 					<Route path='weighted-results' component={Weightedresults} />
-					<Route path='random' component={Random} />
 				</Route>
+				<Route path='random' component={Random} />
 				<Route path='sideeffects' component={SideEffects} />			
 			</Route>		  
 		</Router>

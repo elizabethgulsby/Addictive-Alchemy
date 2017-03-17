@@ -28,7 +28,13 @@ class Login extends Component {
 
 	render() {
 		if (this.props.loginResponse.msg === "NOPE.exe") {
-			var Message = "Nope!"
+			var Message = "That user does not exist.  Please try again."
+		}
+		else if (this.props.loginResponse.msg === "Bad Password!") {
+			Message = "Password not found.  Please try again."
+		}
+		else if (this.props.loginResponse.msg === "User exists! Insert token.") {
+			hashHistory.push('/');
 		}
 		else {
 			Message = "Please Sign In"

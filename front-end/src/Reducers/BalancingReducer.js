@@ -4,7 +4,7 @@ export default function (state = [], action) {
 		console.log("balancingReducer!");
 		console.log(action.payload);
 			return action.payload
-			default:
-				return state;
+		default:
+			return state;
 	}
 }

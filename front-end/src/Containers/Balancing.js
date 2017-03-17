@@ -51,9 +51,13 @@ class Balancing extends Component {
         let { complexityValue } = this.state
 
        // var sideEffectsOutput = [];
-        // for (var i = 0; i < this.props.balancingResponse.FinalSideEffects.length; i++) {
-        //   sideEffectsOutput.push(this.props.balancingResponse.FinalSideEffects[i]);
-        // }
+
+        console.log("this.props.balancingResponse");       
+        console.log(this.props.balancingResponse);
+        // this.props.balancingResponse.map((response, index) => {
+        //   sideEffectsOutput.push(response[index]);
+        // })
+        // console.log(sideEffectsOutput);
 
 
         
