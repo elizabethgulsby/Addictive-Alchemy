@@ -44,24 +44,29 @@ class Card extends Component {
 		}
 	}
 	render(){
+
 			if(this.state.Locked === true){
-				var cardStatus = "locked lock-image text-center";				
+				var lockStatus = "locked lock-image text-center";				
 			}else if(this.state.Locked === false){
-				var cardStatus = "unlocked lock-image text-center";
+				var lockStatus = "unlocked lock-image text-center";
 			}
 		
 			if(this.state.Flipped === true){
-				var image = this.props.card.cardImageBack	
-			}else if(this.state.Flipped ===false){
+				var flippedStatus = "text-center back-image container";
+				var image = this.props.card.cardImageBack;	
+			}else if(this.state.Flipped === false){
+				var flippedStatus = "text-center front-image container";
 				var image = this.props.card.cardImageFront;
 			}
 		return (
 			<div className="main-card col-sm-3 col-sm-offset-1">
-				<div className={cardStatus} onClick={this.handleLock}>
+				<div className={lockStatus} onClick={this.handleLock}>
 					<img src="../Images/LockBevel.png" role="presentation" />
 				</div>
-				<div className="card-image text-center" onClick={this.handleFlip}>
-					{image}
+				<div className="card-wrapper container">
+					<div className={flippedStatus} onClick={this.handleFlip}>
+						{image}
+					</div>
 				</div>
 			</div>
 		)

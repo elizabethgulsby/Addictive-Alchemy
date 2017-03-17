@@ -76,24 +76,23 @@ class Balancing extends Component {
 
         
             return (
-                <div className="container">
-            <div className="row col-sm-8 col-sm-offset-2">
-                <div className="col-sm-6 ">Slower Game</div>
-                <div className="text-right col-sm-6 ">Fast Game</div>
+              <div className="container">
+                <div className="row col-sm-8 col-sm-offset-2">
+                  <div className="col-sm-6 ">Slower Game</div>
+                  <div className="text-right col-sm-6 ">Fast Game</div>
                 <div className="col-sm-12 slider">  
                  <Slider value={speedValue} orientation="horizontal" onChange={this.handleSpeedChange}
                   min={1} max={5} step={1} />
                 </div>
-                <div className="col-sm-6">Easy Game</div>
-                <div className="text-right col-sm-6">Complex Game</div>
+                  <div className="col-sm-6">Easy Game</div>
+                  <div className="text-right col-sm-6">Complex Game</div>
                 <div className="col-sm-12 slider">
                   <Slider value={complexityValue} orientation="horizontal" onChange={this.handleComplexityChange}
                     min={1} max={5} step={1} />
                 </div>
                     </div>
-              <div className="deal-weighted-effects text-center">
-                  <img onClick={this.handleSettings} src="/Images/DealWeightedSideEffects.png" />
-                
+              <div className="deal-weighted-effects text-center container">
+                  <img onClick={this.handleSettings} src="/Images/DealWeightedSideEffects.png" /> 
               </div>
               <div className="results container text-center">
                 <Weightedresults key="index" />

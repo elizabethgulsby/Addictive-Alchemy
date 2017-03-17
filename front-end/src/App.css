@@ -39,15 +39,38 @@ Body {
   margin-bottom: 10px;
 }
 
-.card-image img{
-  border-radius: 10%;
-}
+
 .card-image{
 
 }
 
+.front-image, .back-image{
+  backface-visibility: hidden;
+}
+
+.back-image{
+
+}
+
+.front-image{
+  position: absolute;
+top: 0;
+left: 0;
+border: 2px solid green;
+transform: rotateY(-180deg)
+}
+
 .main-card{
   margin-bottom: 35px;
+  border: 1px solid red;
+}
+
+.card-wrapper{
+  /* width: 300px; */
+  position: relative;
+  transform-style: preserve-3d;
+  transition: all 2s;
+  border: 10px solid blue;
 }
 
 .locked{
