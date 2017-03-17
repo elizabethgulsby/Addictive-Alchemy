@@ -53,6 +53,7 @@ class Balancing extends Component {
       console.log(this.props)
            let { speedValue } = this.state
         let { complexityValue } = this.state
+
         // if(this.props.balancingResponse.FinalSideEffects.length === 0){
         //   console.log("wooooot");
         // }else
@@ -60,6 +61,18 @@ class Balancing extends Component {
         //   for (var i = 0; i < this.props.balancingResponse.FinalSideEffects.length; i++) {
         //   sideEffectsOutput.push(this.props.balancingResponse.FinalSideEffects[i]);
         //   }
+
+
+       // var sideEffectsOutput = [];
+
+        console.log("this.props.balancingResponse");       
+        console.log(this.props.balancingResponse);
+        // this.props.balancingResponse.map((response, index) => {
+        //   sideEffectsOutput.push(response[index]);
+        // })
+        // console.log(sideEffectsOutput);
+
+
 
         
             return (

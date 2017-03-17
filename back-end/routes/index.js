@@ -1,6 +1,7 @@
 var express = require('express');
 var router = express.Router();
 var config = require('../config/config');
+var randtoken = require('rand-token');
 var mysql = require('mysql');
 //var sideEffect = require('./SideEffectsTools.js');
 var connection = mysql.createConnection({
@@ -46,7 +47,9 @@ router.post('/login', function(req, res, next) {
 		else {
 			// username is valid.  Check password against bcrypt.  Remove any test data added before bcrypt.
 			checkHash = bcrypt.compareSync(password, results[0].password);
+			console.log('%%%%%%%%%%%');
 			console.log(checkHash);
+			console.log('%%%%%%%%%%%');
 			if (checkHash === false) {
 				//password not found!
 				res.json({
@@ -57,7 +60,7 @@ router.post('/login', function(req, res, next) {
 				//password found, username checks out - add token that keeps user logged in for 1 hr max
 				var token = randtoken.uid(40);
 				insertToken = "UPDATE users SET token = ?, token_exp=DATE_ADD(NOW(), INTERVAL 1 HOUR) " + "WHERE username = ?";
-				connection.query(insertToken, [token, username], (error, results, fields) => {
+				connection.query(insertToken, [token, username], (error2, results2, fields2) => {
 					console.log(token);
 					res.json({
 						msg: "User exists! Insert token.",
@@ -109,7 +112,7 @@ router.post('/weighted-results', function(req, res, next) {
 	function getSideEffects(firstColor, secondColor) {
 		var colorPairs = [];
 		return new Promise(function(resolve, reject) {
-			var colorQuery = "SELECT side_effect_id, image_natural, image_dangerous from side_effects where first_color=? and second_color=?";
+			var colorQuery = "SELECT side_effect_id FROM side_effects WHERE first_color=? AND second_color=?";
 			connection.query(colorQuery, [firstColor, secondColor], (error, results, fields) => {
 				if (error) return reject(error);
 				// console.log("Results Length: " + results.length);
@@ -159,9 +162,17 @@ router.post('/weighted-results', function(req, res, next) {
 			console.log("Card Pool Result: " + cardPool);
 			finalSideEffects = selectFinalSideEffects(cardPool);
 
-			//!!!!!!!!!!!!THIS IS THE FINAL SET OF WEIGHTED RESULTS!!!!!!!!!!!!!!!!!
-			res.json({
-				FinalSideEffects: finalSideEffects
+			console.log("finalSideEffects: " + finalSideEffects);
+
+
+			var imageFiles = [];
+			imageFiles = getFilesFromIds(finalSideEffects).then(imageFiles => {
+				console.log("Image File from promise: " + imageFiles);
+				//!!!!!!!!!!!THIS MIGHT BE THE FINAL SET OF SIDE EFFECTS BY FILE NAME!!!!!!!
+				res.json({
+					FinalSideEffects: imageFiles
+				});				
+
 			});
 
 		});
@@ -184,7 +195,7 @@ router.post('/weighted-results', function(req, res, next) {
 				var weight = 0;
 				//Gets the speed/complexity weights
 				//Vulnerable to SQL injection - parameterize later
-				var currentCardWeightsQuery = "SELECT speed_weight, complexity_weight, image_natural, image_dangerous FROM side_effects WHERE side_effect_id in (" + sideEffectsArray + ")";
+				var currentCardWeightsQuery = "SELECT speed_weight, complexity_weight FROM side_effects WHERE side_effect_id in (" + sideEffectsArray + ")";
 
 				// console.log("Side Effect Id Queried: " + sideEffectsArray);
 				connection.query(currentCardWeightsQuery, (error, results, fields) => {
@@ -225,6 +236,32 @@ router.post('/weighted-results', function(req, res, next) {
 		}
 			
 		return finalPick;
+
+	}
+
+	//function to translate selected id into image file names for the front end to use.
+	function getFilesFromIds(ids) {
+
+		var imageFiles = [];
+
+		return new Promise(function(resolve, reject) {
+
+			var query = "SELECT image_natural FROM side_effects WHERE side_effect_id in (" + ids + ")";
+			connection.query(query, (error, results, fields) => {
+				if (error) return reject(error);
+
+				for (let i = 0; i < results.length; i++) {
+					imageFiles.push(results[i].image_natural);
+				}
+				console.log("getFilesFromIds Files: " + imageFiles);
+				console.log("imageFiles.length: " + imageFiles.length);
+
+				resolve(imageFiles);
+
+			})
+
+		})
+
 
 	}
 

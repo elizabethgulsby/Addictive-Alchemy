@@ -3,64 +3,81 @@ import Card from './Card';
 import {connect} from 'react-redux';
 import {bindActionCreators} from 'redux';
 import {hashHistory} from 'react-router';
-// import WeightedAction from '../Actions/WeightedAction.js';
-// import BalancingAction from '../Actions/BalancingAction.js'
-// import BalancingReducer from '../Reducers/BalancingReducer.js'
-
+import BalancingAction from '../Actions/BalancingAction.js'
 
 
 var weightedArray = [];
-var responseFromDB = [
- {
-   
-   cardImageBack: <img src="../Images/Base_Chain_Lightning_Front.png" /> ,
-   cardImageFront: <img src="../Images/Base_Chain_Lightning_Back.png" />
- },
- {
-   
-   cardImageBack: <img src="../Images/Base_Chain_Lightning_Front.png" /> ,
-   cardImageFront: <img src="../Images/Base_Chain_Lightning_Back.png" />
- },
- {
-   
-   cardImageBack: <img src="../Images/Base_Chain_Lightning_Front.png" /> ,
-   cardImageFront: <img src="../Images/Base_Chain_Lightning_Back.png" />
- },
- {
-   
-   cardImageBack: <img src="../Images/Base_Chain_Lightning_Front.png" /> ,
-   cardImageFront: <img src="../Images/Base_Chain_Lightning_Back.png" />
- },
- {
-   
-   cardImageBack: <img src="../Images/Base_Chain_Lightning_Front.png" /> ,
-   cardImageFront: <img src="../Images/Base_Chain_Lightning_Back.png" />
- },
- {
-   
-   cardImageBack: <img src="../Images/Base_Chain_Lightning_Front.png" /> ,
-   cardImageFront: <img src="../Images/Base_Chain_Lightning_Back.png" />
- }
-
-];
+var responsefromDB = [];
 
 class Weightedresults extends Component {
 
 	constructor(props) {
 		super(props)
-		
+		this.state = {
+
+    }
 	}
 	
 	
 	render(){
-		responseFromDB.map((individualCard, index) => {
-			weightedArray.push(        
-				<Card card={individualCard} key={index} />    
-			)
+
+    console.log("props!");
+    console.log(this.props.balancingResponse);
+
+    //Before the side effects are dealt this if statement is skipped to avoid undefined errors.
+    if (this.props.balancingResponse.FinalSideEffects != null) {
+
+      // alert("hi" + this.props.balancingResponse.FinalSideEffects[0]);
+    // }
+
+       responsefromDB = [
+       {
+         
+         cardImageBack: <img role="presentation" src={"../Images/" + this.props.balancingResponse.FinalSideEffects[0] + "_Back.png"} />,
+         cardImageFront: <img role="presentation" src={"../Images/" + this.props.balancingResponse.FinalSideEffects[0] + "_Front.png"} />
+       },
+       {
+         
+         cardImageBack: <img role="presentation" src={"../Images/" + this.props.balancingResponse.FinalSideEffects[1] + "_Back.png"} /> ,
+         cardImageFront: <img role="presentation" src={"../Images/" + this.props.balancingResponse.FinalSideEffects[1] + "_Front.png"} />
+       },
+       {
+         
+         cardImageBack: <img role="presentation" src={"../Images/" + this.props.balancingResponse.FinalSideEffects[2] + "_Back.png"} /> ,
+         cardImageFront: <img role="presentation" src={"../Images/" + this.props.balancingResponse.FinalSideEffects[2] + "_Front.png"} />
+       },
+       {
+         
+         cardImageBack: <img role="presentation" src={"../Images/" + this.props.balancingResponse.FinalSideEffects[3] + "_Back.png"} /> ,
+         cardImageFront: <img role="presentation" src={"../Images/" + this.props.balancingResponse.FinalSideEffects[3] + "_Front.png"} />
+       },
+       {
+         
+         cardImageBack: <img role="presentation" src={"../Images/" + this.props.balancingResponse.FinalSideEffects[4] + "_Back.png"} /> ,
+         cardImageFront: <img role="presentation" src={"../Images/" + this.props.balancingResponse.FinalSideEffects[4] + "_Front.png"} />
+       },
+       {
+         
+         cardImageBack: <img role="presentation" src={"../Images/" + this.props.balancingResponse.FinalSideEffects[5] + "_Back.png"} /> ,
+         cardImageFront: <img role="presentation" src={"../Images/" + this.props.balancingResponse.FinalSideEffects[5] + "_Front.png"} />
+       }
+
+      ];
 
 
-		})
-		return(
+
+  		responsefromDB.map((individualCard, index) => {
+  			weightedArray.push(        
+  				<Card card={individualCard} key={index} />    
+  			)
+
+
+  		})
+
+    }
+    
+
+		return (
 		
 
 				<div className="container text-center">
@@ -72,8 +89,18 @@ class Weightedresults extends Component {
 
 }
 
+function mapStateToProps(state) {
+  return {
+    balancingResponse: state.balancing
+  }
+}
+
+function mapDispatchToProps(dispatch) {
+  return bindActionCreators({
+    balancingAction: BalancingAction
+  }, dispatch)
+}
 
 
 
-
-export default Weightedresults;
+export default connect(mapStateToProps, mapDispatchToProps)(Weightedresults);

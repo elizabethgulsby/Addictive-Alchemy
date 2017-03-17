@@ -126,8 +126,8 @@ var allSideEffectsPreComponent = [
   cardImageFront: <img src="../Images/Promos_Loose_Staples_Front.png" role="presentation" />
 	},
 	{
-  cardImageBack: <img src="../Images/Promos_Borderless_Bliss.png" role="presentation" />, 
-  cardImageFront: <img src="../Images/Promos_Unfortunate_Walls.png" role="presentation" />
+  cardImageBack: <img src="../Images/Promos_Borderless_Bliss_Back.png" role="presentation" />, 
+  cardImageFront: <img src="../Images/Promos_Borderless_Bliss_Front.png" role="presentation" />
 	}
 ];
 
