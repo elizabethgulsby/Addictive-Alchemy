@@ -3,8 +3,10 @@ export default function(state = [], action) {
 	switch (action.type) {
 		case "login":
 			localStorage.setItem('token', action.payload.token);
-			return action.payload
-			default:
-				return state;
+			return action.payload;
+		case "logout":
+			return action.payload;
+		default:
+			return state;
 	}
 }

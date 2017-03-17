@@ -70,16 +70,16 @@ class Register extends Component {
 				<h1>{Message}</h1>
 					<form className="form-group login-form" onSubmit={this.processRegistration}>
 						<div className="form-group">
-							<label for="username">Username</label>
+							<label htmlFor="username">Username</label>
 							<input type="text" className="form-control" placeholder="Username" value={this.state.handleUsername} />
 						</div>
 						<div className="form-group">
-							<label for="password">Password</label>
+							<label htmlFor="password">Password</label>
 							<input type="password" className="form-control" placeholder="Password" value={this.state.handlePassword}/>
 						</div>
 
 						<div className="form-group">
-							<label for="email">Email</label>
+							<label htmlFor="email">Email</label>
 							<input type="email" className="form-control" placeholder="Email" value={this.state.handleEmail}/>
 						</div>
 						

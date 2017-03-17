@@ -15,9 +15,9 @@ connection.connect();
 //password encryption
 var bcrypt = require('bcrypt-nodejs');
 var hashedPassword = bcrypt.hashSync('x');
-console.log(hashedPassword)
+console.log("1: " + hashedPassword)
 var checkHash = bcrypt.compareSync('x', hashedPassword);
-console.log(checkHash)
+console.log("2: " + checkHash)
 
 
 
@@ -33,41 +33,49 @@ router.get('/', function(req, res, next) {
 
 //get the login page
 router.post('/login', function(req, res, next) {
+	console.log("Res: " + res);
 	var username = req.body.username;
 	var password = req.body.password;
-	var email = req.body.email;
+	// var email = req.body.email;
 	var findUser = "SELECT * from users where user_name = ?";
 	connection.query(findUser, [req.body.username], (error, results, fields) => {
 		if (error) throw error;
+		//user (or username entered) does not exist.  Do not proceed with login.
 		if (results.length === 0) {
 			res.json({
-				msg: "NOPE.exe"
+				isLoggedIn: false,
+				msg: "User does not exist."
 			});
 		}
 		else {
 			// username is valid.  Check password against bcrypt.  Remove any test data added before bcrypt.
 			checkHash = bcrypt.compareSync(password, results[0].password);
-			console.log('%%%%%%%%%%%');
-			console.log(checkHash);
-			console.log('%%%%%%%%%%%');
+			console.log('3: %%%%%%%%%%%');
+			console.log("Here's the checkHash: " + checkHash);
+			console.log('4: %%%%%%%%%%%');
 			if (checkHash === false) {
 				//password not found!
 				res.json({
+					isLoggedIn: false,
 					msg: "Bad password!"
 				})
 			}
 			else {
 				//password found, username checks out - add token that keeps user logged in for 1 hr max
 				var token = randtoken.uid(40);
-				insertToken = "UPDATE users SET token = ?, token_exp=DATE_ADD(NOW(), INTERVAL 1 HOUR) " + "WHERE username = ?";
+				console.log("5: Here is the username: " + username);
+				insertToken = "UPDATE users SET token = ?, token_exp=DATE_ADD(NOW(), INTERVAL 1 HOUR) " + "WHERE user_name = ?";
 				connection.query(insertToken, [token, username], (error2, results2, fields2) => {
-					console.log(token);
+					if (error2) throw error2;
+					// console.log("This is the token: " + token);
 					res.json({
+						isLoggedIn: true,
 						msg: "User exists! Insert token.",
 						token: token,
 						username: req.body.username
 					});
 				});
+				console.log("6: Is there an error?");
 			}
 		}
 	});
@@ -78,7 +86,7 @@ router.post('/register', function(req, res, next) {
 	// console.log("test")
 	//first check for dupes
 	checkDupes = "SELECT * FROM users WHERE user_name = ? OR email = ?"
-	console.log("hello");
+	console.log("7: hello");
 	connection.query(checkDupes, [req.body.username, req.body.email], (error, results, fields) => {
 		if (results.length === 0) {
 			// console.log("no dupes")
@@ -106,8 +114,8 @@ router.post('/register', function(req, res, next) {
 router.post('/weighted-results', function(req, res, next) {
 	var speedweight = req.body.speed_value;
 	var complexityweight = req.body.complexity_value;
-	console.log(speedweight);
-	console.log(complexityweight);
+	console.log("8: " + speedweight);
+	console.log("9: " + complexityweight);
 	//function that will get side effects based on color pairing supplied
 	function getSideEffects(firstColor, secondColor) {
 		var colorPairs = [];
@@ -130,7 +138,7 @@ router.post('/weighted-results', function(req, res, next) {
 	}
 
 
-	console.log("");console.log("");console.log("");
+	console.log("9: ");console.log("10: ");console.log("11: ");
 	var allSideEffects = [];
 
 	//Pushes an array of matching side effects onto another array. 
@@ -159,15 +167,15 @@ router.post('/weighted-results', function(req, res, next) {
 			// res.json("Purple Purple: " + cardPool[0] + " Green Green: " + cardPool[1] + "Blue Blue: " + cardPool[2] + "Purple Green: " + cardPool[3] + "Purple Blue: " + cardPool[4] + "Green Blue: " + cardPool[5]);
 
 			var finalSideEffects = [];
-			console.log("Card Pool Result: " + cardPool);
+			console.log("11: Card Pool Result: " + cardPool);
 			finalSideEffects = selectFinalSideEffects(cardPool);
 
-			console.log("finalSideEffects: " + finalSideEffects);
+			console.log("12: finalSideEffects: " + finalSideEffects);
 
 
 			var imageFiles = [];
 			imageFiles = getFilesFromIds(finalSideEffects).then(imageFiles => {
-				console.log("Image File from promise: " + imageFiles);
+				console.log("13: Image File from promise: " + imageFiles);
 				//!!!!!!!!!!!THIS MIGHT BE THE FINAL SET OF SIDE EFFECTS BY FILE NAME!!!!!!!
 				res.json({
 					FinalSideEffects: imageFiles
@@ -213,7 +221,7 @@ router.post('/weighted-results', function(req, res, next) {
 
 					}
 
-					console.log("Card Pool: " + cardPoolResult);
+					console.log("14: Card Pool: " + cardPoolResult);
 					resolve(cardPoolResult);
 
 				})
@@ -228,11 +236,11 @@ router.post('/weighted-results', function(req, res, next) {
 
 		console.log("weightedCardPool.length: " + weightedCardPool.length);
 		for (let i = 0; i < weightedCardPool.length; i++) {
-			console.log("i: " + i);
+			console.log("15: i: " + i);
 			var pick = Math.floor(Math.random() * weightedCardPool[i].length);
 			console.log("Pick: " + pick);
 			finalPick.push(weightedCardPool[i][pick]);
-			console.log("Final Pick: " + finalPick);
+			console.log("16: Final Pick: " + finalPick);
 		}
 			
 		return finalPick;
@@ -253,8 +261,8 @@ router.post('/weighted-results', function(req, res, next) {
 				for (let i = 0; i < results.length; i++) {
 					imageFiles.push(results[i].image_natural);
 				}
-				console.log("getFilesFromIds Files: " + imageFiles);
-				console.log("imageFiles.length: " + imageFiles.length);
+				console.log("17: getFilesFromIds Files: " + imageFiles);
+				console.log("18: imageFiles.length: " + imageFiles.length);
 
 				resolve(imageFiles);
 

@@ -4,6 +4,7 @@ import {connect} from 'react-redux';
 import {bindActionCreators} from 'redux';
 import {hashHistory} from 'react-router';
 import { Link } from 'react-router';
+import LogoutAction from '../Actions/LogoutAction.js';
 
 class Login extends Component {
 	constructor(props) {
@@ -27,7 +28,7 @@ class Login extends Component {
 
 
 	render() {
-		if (this.props.loginResponse.msg === "NOPE.exe") {
+		if (this.props.loginResponse.msg === "User does not exist.") {
 			var Message = "That user does not exist.  Please try again."
 		}
 		else if (this.props.loginResponse.msg === "Bad Password!") {
@@ -39,6 +40,7 @@ class Login extends Component {
 		else {
 			Message = "Please Sign In"
 		}
+
 		return (
 			<div className="container">
 
@@ -46,11 +48,11 @@ class Login extends Component {
 					<h1>{Message}</h1>
 						<form className="form-group login-form" onSubmit={this.processLogin}>
 							<div className="form-group">
-								<label for="username">Username</label>
+								<label htmlFor="username">Username</label>
 								<input type="text" className="form-control" placeholder="username" />
 							</div>
 							<div className="form-group">
-								<label for="password">Password</label>
+								<label htmlFor="password">Password</label>
 								<input type="password" className="form-control" placeholder="Password" />
 							</div>
 							
@@ -71,7 +73,8 @@ function mapStateToProps(state) {
 
 function mapDispatchToProps(dispatch) {
 	return bindActionCreators({
-		loginAction: LoginAction
+		loginAction: LoginAction,
+		logoutAction: LogoutAction
 	}, dispatch)
 }
 
