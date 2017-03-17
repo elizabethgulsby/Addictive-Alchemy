@@ -19,9 +19,12 @@ class Balancing extends Component {
     this.handleComplexityChange = this.handleComplexityChange.bind(this)
     this.handleSettings = this.handleSettings.bind(this)
     }
-
+  // componentDidMount() {
+  //   console.log("the props"+this.props)
+  //   console.log("the state"+this.state)
+  // }
  handleSettings = (event) =>{
-    console.log("Darn it")
+    // console.log("Darn it")
     var speed_value =  this.state.speedValue;
     var complexity_value = this.state.complexityValue
     this.props.balancingAction({
@@ -47,14 +50,16 @@ class Balancing extends Component {
 
 
      render() {
+      console.log(this.props)
            let { speedValue } = this.state
         let { complexityValue } = this.state
-
-       // var sideEffectsOutput = [];
-        // for (var i = 0; i < this.props.balancingResponse.FinalSideEffects.length; i++) {
+        // if(this.props.balancingResponse.FinalSideEffects.length === 0){
+        //   console.log("wooooot");
+        // }else
+        //   var sideEffectsOutput = [];
+        //   for (var i = 0; i < this.props.balancingResponse.FinalSideEffects.length; i++) {
         //   sideEffectsOutput.push(this.props.balancingResponse.FinalSideEffects[i]);
-        // }
-
+        //   }
 
         
             return (
@@ -77,8 +82,8 @@ class Balancing extends Component {
                   <img onClick={this.handleSettings} src="/Images/DealWeightedSideEffects.png" />
                 
               </div>
-              <div className="results">
-                <Weightedresults />
+              <div className="results container text-center">
+                <Weightedresults key="index" />
                 {this.props.children}
               </div>
                 </div>
@@ -97,7 +102,7 @@ function mapDispatchToProps(dispatch) {
     balancingAction: BalancingAction
   }, dispatch)
 }
-// console.log(currentArray)
+
 
 
 

@@ -63,7 +63,7 @@ class Weightedresults extends Component {
 		return(
 		
 
-				<div className="container">
+				<div className="container text-center">
 					{weightedArray}
 				</div>
 			

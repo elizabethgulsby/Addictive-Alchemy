@@ -1,7 +1,7 @@
 import $ from 'jquery';
 
 export default function(balancingData){
-	console.log("balancingAction");
+	// console.log("balancingAction");
 	var thePromise = $.ajax({
 		method: "POST",
 		url: "http://localhost:3000/weighted-results",

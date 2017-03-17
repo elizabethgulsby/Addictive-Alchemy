@@ -42,8 +42,13 @@ Body {
 .card-image img{
   border-radius: 10%;
 }
+.card-image{
+  border: 1px solid black;
+}
 
 .main-card{
   margin-bottom: 35px;
+  border: 1px solid red;
+
 }
 
