@@ -6,20 +6,20 @@ import {hashHistory} from 'react-router';
 import BalancingAction from '../Actions/BalancingAction.js'
 
 
-var weightedArray = [];
-var responsefromDB = [];
 
 class Weightedresults extends Component {
 
-	constructor(props) {
-		super(props)
-		this.state = {
+  constructor(props) {
+    super(props)
+    this.state = {
 
     }
-	}
-	
-	
-	render(){
+  }
+  
+  
+  render(){
+var weightedArray = [];
+var responsefromDB = [];
 
     console.log("props!");
     console.log(this.props.balancingResponse);
