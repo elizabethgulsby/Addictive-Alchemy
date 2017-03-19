@@ -203,15 +203,42 @@ router.post('/weighted-results', function(req, res, next) {
 				var weight = 0;
 				//Gets the speed/complexity weights
 				//Vulnerable to SQL injection - parameterize later
-				var currentCardWeightsQuery = "SELECT speed_weight, complexity_weight FROM side_effects WHERE side_effect_id in (" + sideEffectsArray + ")";
+				var currentCardWeightsQuery = "SELECT side_effect_id, '-1' as user_id, speed_weight, complexity_weight, '0' as favorited, '0' as blocked FROM side_effects WHERE side_effect_id in (" + sideEffectsArray + ")";
+
+
+				var isLoggedIn = false;
+				//hard coded; test purposes (replace this with the user_id of who is currently logged in)
+				var userID = 8;
+				//checks to see if user is logged in
+				if (isLoggedIn === true) {
+					currentCardWeightsQuery = "SELECT side_effects.side_effect_id, user_side_effect_weights.user_id, speed_weight, complexity_weight, favorited, blocked FROM side_effects LEFT OUTER JOIN user_side_effect_weights ON side_effects.side_effect_id = user_side_effect_weights.side_effect_id WHERE (user_id is NULL or user_id =" + userID + ") AND (side_effects.side_effect_id IN (" + sideEffectsArray + "))";
+				}
+
 
 				// console.log("Side Effect Id Queried: " + sideEffectsArray);
 				connection.query(currentCardWeightsQuery, (error, results, fields) => {
 					if (error) return reject(error);
 
 					for (let i = 0; i < results.length; i++) {
-						weight = 5 - Math.abs(preferredSpeedWeight - results[i].speed_weight);
-						weight += 5 - Math.abs(preferredComplexityWeight - results[i].complexity_weight);
+						//logic for random queries - if a side effect is unweighted, then it will get a single entry
+						if (preferredSpeedWeight === 0 || preferredComplexityWeight === 0) {
+							weight = 1;
+						}
+						else {
+							//side effects are being weighted from slider by user
+							weight = 5 - Math.abs(preferredSpeedWeight - results[i].speed_weight);
+							weight += 5 - Math.abs(preferredComplexityWeight - results[i].complexity_weight);
+						}
+
+						//if the side_effect is favorited, add 2 to the weight (game designer requested that value to be added = 2)
+						//favorited still impacts non-weighted side effects per game designer's request
+						if (results[i].favorited === 1) {
+							weight += 2;
+						}
+						//weight is to equal 0 so that it is not included in any weighting results if blocked by user
+						if (results[i].blocked === 0) {
+							weight = 0;
+						}
 						// console.log("Side Effect Id: " + sideEffectsArray[i] + " Weight: " + weight);
 					
 						//populates cardPool with sideEffectsArray query results post-weight calculations
