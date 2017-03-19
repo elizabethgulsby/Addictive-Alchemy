@@ -21,8 +21,8 @@ class Weightedresults extends Component {
 var weightedArray = [];
 var responsefromDB = [];
 
-    console.log("props!");
-    console.log(this.props.balancingResponse);
+    // console.log("props!");
+    // console.log(this.props.balancingResponse);
 
     //Before the side effects are dealt this if statement is skipped to avoid undefined errors.
     if (this.props.balancingResponse.FinalSideEffects != null) {

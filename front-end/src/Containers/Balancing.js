@@ -50,7 +50,7 @@ class Balancing extends Component {
 
 
      render() {
-      console.log(this.props)
+      // console.log(this.props)
            let { speedValue } = this.state
         let { complexityValue } = this.state
 
@@ -65,8 +65,8 @@ class Balancing extends Component {
 
        // var sideEffectsOutput = [];
 
-        console.log("this.props.balancingResponse");       
-        console.log(this.props.balancingResponse);
+        // console.log("this.props.balancingResponse");       
+        // console.log(this.props.balancingResponse);
         // this.props.balancingResponse.map((response, index) => {
         //   sideEffectsOutput.push(response[index]);
         // })
