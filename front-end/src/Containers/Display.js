@@ -21,14 +21,23 @@ class Display extends Component{
 	}
 	render(){
 		if(this.state.Flipped === true){
-			var image = this.props.card.cardImageBack	
+			var flip = "card flipped";	
 		}else if(this.state.Flipped ===false){
-			var image = this.props.card.cardImageFront;
+			var flip = "card"
 		}
+		var imageFront = this.props.card.cardImageFront;
+		var imageBack = this.props.card.cardImageBack;
 		return (
-			<div className="main-card col-sm-3 col-sm-offset-1">
-				<div className="card-image text-center" onClick={this.handleFlip}>
-					{image}
+		<div className="main-card col-xs-4 text-center">
+				<div className="click-handler" onClick={this.handleFlip}>
+					<div className={flip}>
+						<div className="front">
+							{imageFront}
+						</div>
+						<div className="back">
+							{imageBack}
+						</div>
+					</div>
 				</div>
 			</div>
 		)

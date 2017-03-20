@@ -92,12 +92,10 @@ class Balancing extends Component {
                 </div>
                     </div>
               <div className="deal-weighted-effects text-center">
-                  <img onClick={this.handleSettings} src="/Images/DealWeightedSideEffects.png" />
+                  <Link to="/weighted-results"><img onClick={this.handleSettings} src="/Images/DealWeightedSideEffects.png" /></Link>
                 
               </div>
               <div className="results container text-center">
-                <Weightedresults key="index" />
-                {this.props.children}
               </div>
                 </div>
             )
