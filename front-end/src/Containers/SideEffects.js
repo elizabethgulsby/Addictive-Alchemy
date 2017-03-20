@@ -1,11 +1,6 @@
 import React, {Component} from 'react';
 import Display from './Display';
-import $ from 'jquery';
-import {connect} from 'react-redux';
-import {bindActionCreators} from 'redux';
-import {hashHistory} from 'react-router';
 
-// var allSideEffects = [];
 var allSideEffectsPreComponent = [
   	{
   cardImageBack: <img src="../Images/Base_Chain_Lightning_Back.png" role="presentation" />,
@@ -131,30 +126,17 @@ var allSideEffectsPreComponent = [
 	}
 ];
 
-
-
-
-
-
 class SideEffects extends Component{
-	constructor(props) {
-		super(props);
-	this.state = {
-	  Flipped: "False"
-	}
-	}
-  
+	
 	render(){
-		var allSideEffects = [];
-		allSideEffectsPreComponent.map((individualCard, index) => {
-			allSideEffects.push(		
-				<Display card={individualCard} key={index} />	
-			)
+	var allSideEffects = [];
+	allSideEffectsPreComponent.map((individualCard, index) => {
+		allSideEffects.push(<Display card={individualCard} key={index} />)
 		})
 
 		return(
-			<div className="container">
-	  {allSideEffects}
+			<div>
+				{allSideEffects}
 			</div>
 		)
 	}

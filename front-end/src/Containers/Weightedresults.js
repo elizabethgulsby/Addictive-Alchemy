@@ -5,12 +5,11 @@ import {bindActionCreators} from 'redux';
 import BalancingAction from '../Actions/BalancingAction.js'
 
 class Weightedresults extends Component {
-
-  constructor(props) {
+	constructor(props) {
 	super(props)
-	this.state = {
-	}
-  }
+		this.state = {
+		}
+  	}
   
 	render(){
 		var weightedArray = [];
@@ -54,7 +53,7 @@ class Weightedresults extends Component {
 	}
 		console.log(this.props.balancingResponse.FinalSideEffects)
 		return (
-				<div className="weighted-results">
+				<div>
 					{weightedArray}
 				</div>
 		)
