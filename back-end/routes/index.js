@@ -18,7 +18,7 @@ var hashedPassword = bcrypt.hashSync('x');
 console.log("1: " + hashedPassword)
 var checkHash = bcrypt.compareSync('x', hashedPassword);
 console.log("2: " + checkHash)
-
+// var isLoggedIn = "false";
 
 
 /* GET home page. */
@@ -43,7 +43,8 @@ router.post('/login', function(req, res, next) {
 		//user (or username entered) does not exist.  Do not proceed with login.
 		if (results.length === 0) {
 			res.json({
-				isLoggedIn: false,
+				//userId -1 means a user is not logged in.
+				userId: -1,
 				msg: "User does not exist."
 			});
 		}
@@ -56,7 +57,7 @@ router.post('/login', function(req, res, next) {
 			if (checkHash === false) {
 				//password not found!
 				res.json({
-					isLoggedIn: false,
+					userId: -1,
 					msg: "Bad password!"
 				})
 			}
@@ -69,7 +70,7 @@ router.post('/login', function(req, res, next) {
 					if (error2) throw error2;
 					// console.log("This is the token: " + token);
 					res.json({
-						isLoggedIn: true,
+						userId: results[0].user_id,
 						msg: "User exists! Insert token.",
 						token: token,
 						username: req.body.username
@@ -207,8 +208,9 @@ router.post('/weighted-results', function(req, res, next) {
 
 
 				var isLoggedIn = false;
+				console.log('*****' + isLoggedIn + '*****')
 				//hard coded; test purposes (replace this with the user_id of who is currently logged in)
-				var userID = 8;
+				var userID = 7;
 				//checks to see if user is logged in
 				if (isLoggedIn === true) {
 					currentCardWeightsQuery = "SELECT side_effects.side_effect_id, user_side_effect_weights.user_id, speed_weight, complexity_weight, favorited, blocked FROM side_effects LEFT OUTER JOIN user_side_effect_weights ON side_effects.side_effect_id = user_side_effect_weights.side_effect_id WHERE (user_id is NULL or user_id =" + userID + ") AND (side_effects.side_effect_id IN (" + sideEffectsArray + "))";
@@ -221,6 +223,7 @@ router.post('/weighted-results', function(req, res, next) {
 
 					for (let i = 0; i < results.length; i++) {
 						//logic for random queries - if a side effect is unweighted, then it will get a single entry
+						//when deal random side effects is clicked, have it go to the same route as weighted side effects. Have it also pass a value, so that route knows to hide the weighted side effects sliders, and that route will also ignore the weighted side effects sliders. When this function is called by that route, through that method it will set the preferred values to 0, which will mean it will be an unweighted side effect.
 						if (preferredSpeedWeight === 0 || preferredComplexityWeight === 0) {
 							weight = 1;
 						}
@@ -309,10 +312,12 @@ router.post('/weighted-results', function(req, res, next) {
 
 //route to return all side effects on "View Side Effects" page
 router.get('/sideeffects', function(req, res, next) {
-	var possibleOptionsQuery = "SELECT side_effect_name, image_natural, image_dangerous, speed_weight, complexity_weight FROM side_effects";
-	connection.query(possibleOptionsQuery, (error, results, fields) => {
-		res.json(results);
-	})
+	// var favorited = req.body.favorited;
+	// var blocked = req.body.blocked;
+	// var isLoggedIn = req.body.isLoggedIn;
+
+	//check to see if anyone is logged in; if they are and they have favorited a side effect (onclick), insert user_id, favorited, and side_effect_id into database
+	// var checkLoggedInQuery = 
 });
 
 
