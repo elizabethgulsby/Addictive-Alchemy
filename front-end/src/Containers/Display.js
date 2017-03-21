@@ -30,7 +30,7 @@ class Display extends Component{
 		let imageFront = this.props.card.cardImageFront;
 		let imageBack = this.props.card.cardImageBack;
 		return (
-		<div className="main-card col-xs-4 text-center">
+		<div className="main-card col-xs-4 text-center display">
 				<div className="click-handler" onClick={this.handleFlip}>
 					<div className={flip}>
 						<div className="front">
@@ -39,6 +39,14 @@ class Display extends Component{
 						<div className="back">
 							{imageBack}
 						</div>
+					</div>
+				</div>
+				<div className="row">
+					<div className="preferences favorite col-xs-6">
+						<button id="favorite" type="button">Favorite</button>
+					</div>
+					<div className="preferences block col-xs-6">
+						<button id="block" type="button">Block</button>
 					</div>
 				</div>
 			</div>

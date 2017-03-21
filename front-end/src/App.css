@@ -199,5 +199,20 @@ Body {
 .buttons{
   margin-top: 20px;
 }
+.button-wrapper{
 
+}
+.preferences button{
+  background: none;
+  border-radius: 20%;
+  margin-top: 5px;
+  margin-bottom: 20px;
+  font-family: 'Fenix', sans-serif;
+  font-size: 20px;
+
+
+}
+#favorite{
+  margin-left: 45%;
+}
 

@@ -203,8 +203,6 @@ class SideEffects extends Component{
 				allSideEffects.push(
 					<div>		
 						<Display card={individualCard} key={index} />
-						<button type="button">Favorite</button>
-						<button type="button">Block</button>
 					</div>
 				)
 			})
