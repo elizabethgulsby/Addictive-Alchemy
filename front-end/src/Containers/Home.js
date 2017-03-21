@@ -51,7 +51,7 @@ class Home extends Component {
 				<Link to="/sideeffects"><img src="../Images/ViewSideEffects.png" role="presentation" /></Link>
 			</div>
 			<div className="buttons text-center col-sm-12">
-				<Link to="/"><img src="../Images/About.png" role="presentation" /></Link>
+				<Link to="/about"><img src="../Images/About.png" role="presentation" /></Link>
 			</div>
 
 			<div className="container col-sm-12 text-left">
