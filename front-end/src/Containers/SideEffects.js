@@ -197,7 +197,7 @@ class SideEffects extends Component{
 			];
 		
 		//if user is logged in, buttons appear below cards
-		if (this.props.loginResponse.userId != -1) {
+		if (this.props.loginResponse.userId > 0) {
 			// console.log("YES it runs!");
 			allSideEffectsPreComponent.map((individualCard, index) => {
 				allSideEffects.push(

@@ -18,6 +18,18 @@ class Balancing extends Component {
 	this.handleSpeedChange = this.handleSpeedChange.bind(this);
 	this.handleComplexityChange = this.handleComplexityChange.bind(this);
 	this.handleSettings = this.handleSettings.bind(this);
+	this.handleRandom = this.handleRandom.bind(this);
+	}
+
+	handleRandom = (event) => {
+		//will hide slider if clicked, no values from slider sent to weighted-results route
+		let speed_value = 0;
+		let complexity_value = 0;
+		this.props.balancingAction({
+			speed_value: speed_value,
+			complexity_value: complexity_value
+		})
+
 	}
 
 	handleSettings = (event) =>{
@@ -72,6 +84,7 @@ class Balancing extends Component {
 				</div>
 			 	<div className="deal-weighted-effects text-center">
 					<Link to="/weighted-results"><img onClick={this.handleSettings} src="/Images/DealWeightedSideEffects.png" /></Link>
+					<Link to="/weighted-results"><img onClick={this.handleRandom} src="/Images/DealRandomSideEffects.png"/></Link>
 				</div>
 			</div>
 		)	
