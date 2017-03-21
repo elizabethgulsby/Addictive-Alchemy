@@ -40,19 +40,19 @@ class Home extends Component {
 
   	
   
-	    return (
-			<div className="content">
-				
-				<div className="buttons text-center col-sm-12">
-					<Link to="/balancing"><img src="../Images/DealSideEffects.png" role="presentation" /></Link>
-				</div>
-				<div className="buttons text-center col-sm-12">
-					<Link to="/sideeffects"><img src="../Images/ViewSideEffects.png" role="presentation" /></Link>
-				</div>
-				<div className="buttons text-center col-sm-12">
-					<Link to="/"><img src="../Images/About.png" role="presentation" /></Link>
-				</div>
 
+    return (
+		<div className="content">
+			
+			<div className="buttons text-center col-sm-12">
+				<Link to="/balancing"><img src="../Images/DealSideEffects.png" role="presentation" /></Link>
+			</div>
+			<div className="buttons text-center col-sm-12">
+				<Link to="/sideeffects"><img src="../Images/ViewSideEffects.png" role="presentation" /></Link>
+			</div>
+			<div className="buttons text-center col-sm-12">
+				<Link to="/about"><img src="../Images/About.png" role="presentation" /></Link>
+			</div>
 				<div className="container col-sm-12 text-left">
 					<Link to="/login" className="links">{loggedInResult}</Link>
 					<br />

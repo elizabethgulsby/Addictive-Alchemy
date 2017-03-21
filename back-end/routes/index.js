@@ -220,11 +220,13 @@ router.post('/weighted-results', function(req, res, next) {
 				// console.log("Side Effect Id Queried: " + sideEffectsArray);
 				connection.query(currentCardWeightsQuery, (error, results, fields) => {
 					if (error) return reject(error);
-
+					console.log("These are the weights: " + preferredSpeedWeight + "," + preferredComplexityWeight)
 					for (let i = 0; i < results.length; i++) {
+						console.log("preferredSpeedWeight typeof: " + typeof preferredSpeedWeight);
 						//logic for random queries - if a side effect is unweighted, then it will get a single entry
 						//when deal random side effects is clicked, have it go to the same route as weighted side effects. Have it also pass a value, so that route knows to hide the weighted side effects sliders, and that route will also ignore the weighted side effects sliders. When this function is called by that route, through that method it will set the preferred values to 0, which will mean it will be an unweighted side effect.
-						if (preferredSpeedWeight === 0 || preferredComplexityWeight === 0) {
+						if (preferredSpeedWeight == 0 || preferredComplexityWeight == 0) {
+							console.log("Random route test - see below");
 							weight = 1;
 						}
 						else {
@@ -235,11 +237,11 @@ router.post('/weighted-results', function(req, res, next) {
 
 						//if the side_effect is favorited, add 2 to the weight (game designer requested that value to be added = 2)
 						//favorited still impacts non-weighted side effects per game designer's request
-						if (results[i].favorited === 1) {
+						if (results[i].favorited == 1) {
 							weight += 2;
 						}
 						//weight is to equal 0 so that it is not included in any weighting results if blocked by user
-						if (results[i].blocked === 0) {
+						if (results[i].blocked == 1) {
 							weight = 0;
 						}
 						// console.log("Side Effect Id: " + sideEffectsArray[i] + " Weight: " + weight);
