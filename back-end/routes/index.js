@@ -18,7 +18,7 @@ var hashedPassword = bcrypt.hashSync('x');
 console.log("1: " + hashedPassword)
 var checkHash = bcrypt.compareSync('x', hashedPassword);
 console.log("2: " + checkHash)
-
+// var isLoggedIn = "false";
 
 
 /* GET home page. */
@@ -207,8 +207,9 @@ router.post('/weighted-results', function(req, res, next) {
 
 
 				var isLoggedIn = false;
+				console.log('*****' + isLoggedIn + '*****')
 				//hard coded; test purposes (replace this with the user_id of who is currently logged in)
-				var userID = 8;
+				var userID = 7;
 				//checks to see if user is logged in
 				if (isLoggedIn === true) {
 					currentCardWeightsQuery = "SELECT side_effects.side_effect_id, user_side_effect_weights.user_id, speed_weight, complexity_weight, favorited, blocked FROM side_effects LEFT OUTER JOIN user_side_effect_weights ON side_effects.side_effect_id = user_side_effect_weights.side_effect_id WHERE (user_id is NULL or user_id =" + userID + ") AND (side_effects.side_effect_id IN (" + sideEffectsArray + "))";
@@ -308,11 +309,23 @@ router.post('/weighted-results', function(req, res, next) {
 
 
 //route to return all side effects on "View Side Effects" page
-router.get('/sideeffects', function(req, res, next) {
-	var possibleOptionsQuery = "SELECT side_effect_name, image_natural, image_dangerous, speed_weight, complexity_weight FROM side_effects";
+router.post('/sideeffects', function(req, res, next) {
+	// var favorited = req.body.favorited;
+	// var blocked = req.body.blocked;
+	//gets all side effects from the database
+	var possibleOptionsQuery = "SELECT side_effect_name, image_natural, speed_weight, complexity_weight FROM side_effects";
 	connection.query(possibleOptionsQuery, (error, results, fields) => {
+		if (error) throw error;
+		// console.log(typeof(results));
 		res.json(results);
 	})
+	//isLoggedIn set to false by default
+	// var isLoggedIn = false;
+
+	//check to see if anyone is logged in; if they are and they have favorited a side effect (onclick), insert user_id, favorited, and side_effect_id into database
+	// if (favorited && isLoggedIn === true) {
+	// 	// insertFavoritedQuery = "INSERT INTO user_side_effect_weights VALUES (" + favorited + 
+	// }
 });
 
 
