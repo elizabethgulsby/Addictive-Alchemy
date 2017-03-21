@@ -43,23 +43,20 @@ class Login extends Component {
 
 		return (
 			<div className="container">
-
-					<div className="Login">
-					<h1>{Message}</h1>
-						<form className="form-group login-form" onSubmit={this.processLogin}>
-							<div className="form-group">
-								<label htmlFor="username">Username</label>
-								<input type="text" className="form-control" placeholder="username" />
-							</div>
-							<div className="form-group">
-								<label htmlFor="password">Password</label>
-								<input type="password" className="form-control" placeholder="Password" />
-							</div>
-							
+				<div className="Login form-group">
+						<h1>{Message}</h1>
+					<form className="form-group login-form" onSubmit={this.processLogin}>
+						<div className="form-group">
+							<label htmlFor="username">Username</label>
+							<input type="text" className="form-control" placeholder="username" />
+						</div>
+						<div className="form-group">
+							<label htmlFor="password">Password</label>
+							<input type="password" className="form-control" placeholder="Password" />
+						</div>	
 							<button type="submit" className="btn btn-primary">Submit</button>
-						</form>
-
-					</div>
+					</form>
+				</div>
 			</div>
 		)
 	}

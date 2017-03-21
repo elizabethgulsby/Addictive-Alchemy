@@ -9,108 +9,83 @@ import Weightedresults from './Weightedresults.js';
 
 
 class Balancing extends Component {
-    constructor(props) {
-        super(props)
-        this.state = {
-          speedValue: 3,
-          complexityValue: 3
-        }
-    this.handleSpeedChange = this.handleSpeedChange.bind(this)
-    this.handleComplexityChange = this.handleComplexityChange.bind(this)
-    this.handleSettings = this.handleSettings.bind(this)
-    }
-  // componentDidMount() {
-  //   console.log("the props"+this.props)
-  //   console.log("the state"+this.state)
-  // }
- handleSettings = (event) =>{
-    // console.log("Darn it")
-    var speed_value =  this.state.speedValue;
-    var complexity_value = this.state.complexityValue
-    this.props.balancingAction({
-      speed_value: speed_value,
-      complexity_value: complexity_value
-    })
-  }
+	constructor(props) {
+		super(props)
+		this.state = {
+		  	speedValue: 3,
+		  	complexityValue: 3
+		}
+	this.handleSpeedChange = this.handleSpeedChange.bind(this);
+	this.handleComplexityChange = this.handleComplexityChange.bind(this);
+	this.handleSettings = this.handleSettings.bind(this);
+	}
+
+	handleSettings = (event) =>{
+		let speed_value =  this.state.speedValue;
+		let complexity_value = this.state.complexityValue;
+		this.props.balancingAction({
+	  		speed_value: speed_value,
+	  		complexity_value: complexity_value
+		})
+  	}
   
-  handleSpeedChange = (value) => {
-      this.setState({
-          speedValue: value
-      })
-    // console.log(this.state.speedValue);
-  }
+  	handleSpeedChange = (value) => {
+		this.setState({
+		 speedValue: value
+	  	})
+  	}
 
- handleComplexityChange = (value) => {
-    this.setState({
-        complexityValue: value
-    })
-    // console.log(this.state.complexityValue);
-  }  
+ 	handleComplexityChange = (value) => {
+		this.setState({
+		complexityValue: value
+		})
+  	}  
 
-
-
-     render() {
-      // console.log(this.props)
-           let { speedValue } = this.state
-        let { complexityValue } = this.state
-
-        // if(this.props.balancingResponse.FinalSideEffects.length === 0){
-        //   console.log("wooooot");
-        // }else
-        //   var sideEffectsOutput = [];
-        //   for (var i = 0; i < this.props.balancingResponse.FinalSideEffects.length; i++) {
-        //   sideEffectsOutput.push(this.props.balancingResponse.FinalSideEffects[i]);
-        //   }
-
-
-       // var sideEffectsOutput = [];
-
-        // console.log("this.props.balancingResponse");       
-        // console.log(this.props.balancingResponse);
-        // this.props.balancingResponse.map((response, index) => {
-        //   sideEffectsOutput.push(response[index]);
-        // })
-        // console.log(sideEffectsOutput);
-
-
-
-        
-            return (
-                <div className="container">
-            <div className="row col-sm-8 col-sm-offset-2">
-                <div className="col-sm-6 ">Slower Game</div>
-                <div className="text-right col-sm-6 ">Fast Game</div>
-                <div className="col-sm-12 slider">  
-                 <Slider value={speedValue} orientation="horizontal" onChange={this.handleSpeedChange}
-                  min={1} max={5} step={1} />
-                </div>
-                <div className="col-sm-6">Easy Game</div>
-                <div className="text-right col-sm-6">Complex Game</div>
-                <div className="col-sm-12 slider">
-                  <Slider value={complexityValue} orientation="horizontal" onChange={this.handleComplexityChange}
-                    min={1} max={5} step={1} />
-                </div>
-                    </div>
-              <div className="deal-weighted-effects text-center">
-                  <Link to="/weighted-results"><img onClick={this.handleSettings} src="/Images/DealWeightedSideEffects.png" /></Link>
-                
-              </div>
-              <div className="results container text-center">
-              </div>
-                </div>
-            )
-            
-    }
+	render() {
+		let { speedValue } = this.state
+		let { complexityValue } = this.state
+		
+		return (
+			<div className="container text-large text-center">
+					Weight Side Effects
+				<div className="row col-sm-8 col-sm-offset-2 balancing">
+					<div className="col-sm-6 text-field">
+						Slower Game
+					</div>
+					<div className="text-right col-sm-6 text-field">
+						Fast Game
+					</div>
+					<div className="col-sm-12 slider-one slider">  
+						<Slider value={speedValue} orientation="horizontal" onChange={this.handleSpeedChange}
+				  		min={1} max={5} step={1} />
+					</div>
+					<div className="col-sm-6 text-field">
+						Easy Game
+					</div>
+					<div className="text-right col-sm-6 text-field">
+						Complex Game
+					</div>
+					<div className="col-sm-12 slider-two slider">
+				  		<Slider value={complexityValue} orientation="horizontal" onChange={this.handleComplexityChange}
+						min={1} max={5} step={1} />
+					</div>
+				</div>
+			 	<div className="deal-weighted-effects text-center">
+					<Link to="/weighted-results"><img onClick={this.handleSettings} src="/Images/DealWeightedSideEffects.png" /></Link>
+				</div>
+			</div>
+		)	
+	}
 }
 function mapStateToProps(state) {
   return {
-    balancingResponse: state.balancing
+	balancingResponse: state.balancing
   }
 }
 
 function mapDispatchToProps(dispatch) {
   return bindActionCreators({
-    balancingAction: BalancingAction
+	balancingAction: BalancingAction
   }, dispatch)
 }
 

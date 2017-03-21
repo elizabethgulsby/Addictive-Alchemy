@@ -1,8 +1,5 @@
 import React, { Component } from 'react';
-import {hashHistory} from 'react-router';
 import { Link } from 'react-router';
-import $ from 'jquery';
-
 
 class Card extends Component {
 	constructor(props) {
@@ -58,7 +55,6 @@ class Card extends Component {
 		var imageFront = [this.props.card.cardImageFront];
 
 		return (
-
 			<div className="main-card col-xs-4 text-center">
 				<div className={lockStatus} onClick={this.handleLock}>
 					<img src="../Images/LockBevel.png" role="presentation" />
@@ -77,6 +73,5 @@ class Card extends Component {
 		)
 	}
 }
-
 
 export default Card;

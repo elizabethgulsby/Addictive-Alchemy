@@ -27,9 +27,6 @@ class Register extends Component {
 			password: Password,
 			email: Email
 		});
-		// console.log(event.target[0].value)
-		// console.log(event.target[1].value)
-		// console.log(event.target[2].value)
 	}
 
 	handleUsername(event) {
@@ -54,7 +51,6 @@ class Register extends Component {
 	}
 
 	render() {
-		// console.log(this.props)
 		if (this.props.registerResponse.msg === "User added!") {
 			var Message = "User added!  Please return to the home screen."
 		}
@@ -66,7 +62,7 @@ class Register extends Component {
 		}
 		return (
 			<div className="container">
-				<div className="Register">
+				<div className="Register form-group">
 				<h1>{Message}</h1>
 					<form className="form-group login-form" onSubmit={this.processRegistration}>
 						<div className="form-group">
