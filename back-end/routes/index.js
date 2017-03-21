@@ -226,7 +226,7 @@ router.post('/weighted-results', function(req, res, next) {
 						//logic for random queries - if a side effect is unweighted, then it will get a single entry
 						//when deal random side effects is clicked, have it go to the same route as weighted side effects. Have it also pass a value, so that route knows to hide the weighted side effects sliders, and that route will also ignore the weighted side effects sliders. When this function is called by that route, through that method it will set the preferred values to 0, which will mean it will be an unweighted side effect.
 						if (preferredSpeedWeight == 0 || preferredComplexityWeight == 0) {
-							console.log("When something doesn't work, put a test in to see if it fires.");
+							console.log("Random route test - see below");
 							weight = 1;
 						}
 						else {
