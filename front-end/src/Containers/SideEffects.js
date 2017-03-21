@@ -1,17 +1,12 @@
 import React, { Component } from 'react';
 import {Link} from 'react-router';
-
-// import React, {Component} from 'react';
 import Display from './Display';
 import $ from 'jquery';
 import {connect} from 'react-redux';
 import {bindActionCreators} from 'redux';
 import {hashHistory} from 'react-router';
-import SideEffectsAction from '../Actions/SideEffectsAction.js';
-// import { Link } from 'react-router';
-
-// var allSideEffects = [];
-
+// import SideEffectsAction from '../Actions/SideEffectsAction.js';
+import LoginAction from '../Actions/LoginAction.js';
 
 
 class SideEffects extends Component{
@@ -20,51 +15,55 @@ class SideEffects extends Component{
 		this.state = {
 	  		Flipped: false,
 	  		Favorited: false,
-	  		Blocked: false,
-	  		IsLoggedIn: false
+	  		Blocked: false
 		}
 		this.handleBlocked = this.handleBlocked.bind(this);
 		this.handleFavorited = this.handleFavorited.bind(this);
-		this.handleLoggedIn = this.handleLoggedIn.bind(this);
+		// this.checkLoggedIn = this.checkLoggedIn.bind(this);
 	}
-
-
-	  handleSettings = (event) => {
-	  	var flipped = this.state.Flipped;
-	  	var favorited = this.state.Favorited;
-	  	var blocked = this.state.Blocked;
-	  	var isLoggedIn = this.state.IsLoggedIn;
-	  	this.props.sideEffectsAction({
-	  		Flipped: flipped,
-	  		Favorited: favorited,
-	  		Blocked: blocked,
-	  		IsLoggedIn: isLoggedIn
-
-	  	})
-
-	  }
 
 
 	handleBlocked() {
-
+		if (this.state.Blocked === true) {
+			this.setState({
+				Blocked: false
+			})
+		}
+		else if (this.state.Blocked === false) {
+			this.setState({
+				Blocked: true
+			})
+		}
 	}
 
 	handleFavorited() {
-
+		if (this.state.Favorited === true) {
+			this.setState({
+				Favorited: false
+			})
+		}
+		else if (this.state.Favorited === false) {
+			this.setState({
+				Favorited: true
+			})
+		}
 	}
 
-	handleLoggedIn() {
-
-	}
+	// checkLoggedIn() {
+	// 	this.props.loginAction({
+	// 		isLoggedIn: false
+	// 	})
+	// }
 
 	// componentDidMount() {
-	// 	this.props.sideEffectsAction();
-	// 	// console.log("this.props.sideEffectsResponse");
-	// 	// console.log(this.props);
-	// 	// console.log(this.props.sideEffectsAction());
+	// 	// this.props.loginAction();
 	// }
   
 	render(){
+
+		console.log("SideEffects render() this.props.loginResponse.userId");
+		console.log(this.props.loginResponse.userId);
+
 		// this.props.sideEffectsAction();
 
 		var allSideEffects = [];
@@ -197,13 +196,28 @@ class SideEffects extends Component{
 				}
 			];
 		
-		//add if statement here that will add a div containing favorite/block buttons if user is logged in (from this.props.loginResponse.msg?)
-
-		allSideEffectsPreComponent.map((individualCard, index) => {
-			allSideEffects.push(		
-				<Display card={individualCard} key={index} />
-			)
-		})
+		//if user is logged in, buttons appear below cards
+		if (this.props.loginResponse.userId != -1) {
+			// console.log("YES it runs!");
+			allSideEffectsPreComponent.map((individualCard, index) => {
+				allSideEffects.push(
+					<div>		
+						<Display card={individualCard} key={index} />
+						<button type="button">Favorite</button>
+						<button type="button">Block</button>
+					</div>
+				)
+			})
+		}
+		else {
+			allSideEffectsPreComponent.map((individualCard, index) => {
+				allSideEffects.push(
+					<div>		
+						<Display card={individualCard} key={index} />
+					</div>
+				)
+			})
+		}
 
 		return(
 			<div className="container">
@@ -215,14 +229,15 @@ class SideEffects extends Component{
 
 function mapStateToProps(state) {
   return {
-	sideEffectsResponse: state.SideEffects
+	loginResponse: state.login
   }
 }
 
 function mapDispatchToProps(dispatch) {
   return bindActionCreators({
-	sideEffectsAction: SideEffectsAction
+	loginAction: LoginAction
   }, dispatch)
 }
+
 
 export default connect(mapStateToProps, mapDispatchToProps)(SideEffects);

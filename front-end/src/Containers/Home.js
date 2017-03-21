@@ -10,24 +10,27 @@ class Home extends Component {
 	constructor(props) {
 		super(props);
 		this.state = {
-			isLoggedIn: false
+			// isLoggedIn: false
 		}
 		this.handleLogout = this.handleLogout.bind(this);
 	}
 
 	handleLogout() {
+		console.log("Home.js - handleLogout() is called.");
 		this.props.loginAction({
-			isLoggedIn: false
+			userId: -1
 		})
 	}
 
 
   	render() {
 	  	var loggedInResult = 'Login';
-	  	var createAccountOrLogout = 'CreateAccount'
+	  	var createAccountOrLogout = 'Create Account'
 	  	var Message = 'Please Sign In'
 	  	if (this.props.loginResponse !== null) {
-	  		if (this.props.loginResponse.isLoggedIn) {
+	  		console.log("this.props.loginResponse");
+	  		console.log(this.props.loginResponse);
+	  		if (this.props.loginResponse.userId != -1) {
 	  			loggedInResult = "Hi, " + this.props.loginResponse.username + "!"
 	  			createAccountOrLogout = <Link to="/" className="links" onClick={this.handleLogout}>Logout</Link>
 	  		}

@@ -10,7 +10,8 @@ class Login extends Component {
 	constructor(props) {
 		super(props);
 		this.state = {
-			loginResponse: ''
+			loginResponse: '',
+			token: ''
 		}
 	this.processLogin = this.processLogin.bind(this);	
 	}

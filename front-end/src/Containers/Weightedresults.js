@@ -4,6 +4,7 @@ import {connect} from 'react-redux';
 import {bindActionCreators} from 'redux';
 import BalancingAction from '../Actions/BalancingAction.js'
 
+
 class Weightedresults extends Component {
 	constructor(props) {
 	super(props)
@@ -62,8 +63,8 @@ class Weightedresults extends Component {
 
 function mapStateToProps(state) {
   return {
-	balancingResponse: state.balancing
-  }
+		balancingResponse: state.balancing
+	}
 }
 
 function mapDispatchToProps(dispatch) {
@@ -71,5 +72,7 @@ function mapDispatchToProps(dispatch) {
 	balancingAction: BalancingAction
   }, dispatch)
 }
+
+
 
 export default connect(mapStateToProps, mapDispatchToProps)(Weightedresults);
