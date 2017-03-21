@@ -210,7 +210,7 @@ router.post('/weighted-results', function(req, res, next) {
 				var isLoggedIn = false;
 				console.log('*****' + isLoggedIn + '*****')
 				//hard coded; test purposes (replace this with the user_id of who is currently logged in)
-				var userID = 7;
+				// var userID = 7;
 				//checks to see if user is logged in
 				if (isLoggedIn === true) {
 					currentCardWeightsQuery = "SELECT side_effects.side_effect_id, user_side_effect_weights.user_id, speed_weight, complexity_weight, favorited, blocked FROM side_effects LEFT OUTER JOIN user_side_effect_weights ON side_effects.side_effect_id = user_side_effect_weights.side_effect_id WHERE (user_id is NULL or user_id =" + userID + ") AND (side_effects.side_effect_id IN (" + sideEffectsArray + "))";

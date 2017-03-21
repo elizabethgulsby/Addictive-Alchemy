@@ -20,6 +20,8 @@ class Home extends Component {
 		this.props.loginAction({
 			userId: -1
 		})
+		console.log("After Logout userId!");
+		console.log(this.props.loginResponse.userId);
 	}
 
 
@@ -27,25 +29,23 @@ class Home extends Component {
 	  	var loggedInResult = 'Login';
 	  	var createAccountOrLogout = 'Create Account'
 	  	var Message = 'Please Sign In'
-	  	if (this.props.loginResponse !== null) {
+	  	// if (this.props.loginResponse !== null) {
 	  		console.log("this.props.loginResponse");
 	  		console.log(this.props.loginResponse);
-	  		if (this.props.loginResponse.userId != -1) {
+	  		if (this.props.loginResponse.userId > 0) {
 	  			loggedInResult = "Hi, " + this.props.loginResponse.username + "!"
 	  			createAccountOrLogout = <Link to="/" className="links" onClick={this.handleLogout}>Logout</Link>
 	  		}
 	  		console.log(loggedInResult);
 	  		console.log(this.props.loginResponse);
 
-  	}
+  	// }
   
     return (
 		<div className="content">
+			
 			<div className="buttons text-center col-sm-12">
-				<Link to="/random"><img src="../Images/DealRandomSideEffects.png" role="presentation" /></Link>
-			</div>
-			<div className="buttons text-center col-sm-12">
-				<Link to="/balancing"><img src="../Images/DealWeightedSideEffects.png" role="presentation" /></Link>
+				<Link to="/balancing"><img src="../Images/DealSideEffects.png" role="presentation" /></Link>
 			</div>
 			<div className="buttons text-center col-sm-12">
 				<Link to="/sideeffects"><img src="../Images/ViewSideEffects.png" role="presentation" /></Link>
