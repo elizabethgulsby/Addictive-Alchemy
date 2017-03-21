@@ -62,7 +62,7 @@ class Register extends Component {
 		}
 		return (
 			<div className="container">
-				<div className="Register form-group">
+				<div className="register shadow form-group">
 				<h1>{Message}</h1>
 					<form className="form-group login-form" onSubmit={this.processRegistration}>
 						<div className="form-group">

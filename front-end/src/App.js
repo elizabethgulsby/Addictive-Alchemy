@@ -6,7 +6,7 @@ class App extends Component {
   	render() {
 		return (
 			<div className="app container">
-				<div className="row">
+				<div className="row nav-main">
 				  		<div className="logo text-left col-sm-6">
 							<Link to="/"><img src="/Images/Mix_C14004_Logo_Game_words.png" role="presentation" /></Link>
 				  		</div>

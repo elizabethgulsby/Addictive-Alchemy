@@ -43,7 +43,7 @@ class Login extends Component {
 		}
 
 		return (
-			<div className="container">
+			<div className="container shadow text-center col-xs-8 col-xs-offset-2">
 				<div className="Login form-group">
 						<h1>{Message}</h1>
 					<form className="form-group login-form" onSubmit={this.processLogin}>

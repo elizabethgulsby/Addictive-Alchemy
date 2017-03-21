@@ -60,8 +60,8 @@ class Balancing extends Component {
 		return (
 			<div className="container text-large text-center">
 					Weight Side Effects
-				<div className="row col-sm-8 col-sm-offset-2 balancing">
-					<div className="col-sm-6 text-field">
+				<div className="col-sm-8 col-sm-offset-2 balancing">
+					<div className="col-sm-6 text-field text-left">
 						Slower Game
 					</div>
 					<div className="text-right col-sm-6 text-field">
@@ -71,7 +71,7 @@ class Balancing extends Component {
 						<Slider value={speedValue} orientation="horizontal" onChange={this.handleSpeedChange}
 				  		min={1} max={5} step={1} />
 					</div>
-					<div className="col-sm-6 text-field">
+					<div className="col-sm-6 text-field text-left">
 						Easy Game
 					</div>
 					<div className="text-right col-sm-6 text-field">
@@ -82,9 +82,13 @@ class Balancing extends Component {
 						min={1} max={5} step={1} />
 					</div>
 				</div>
-			 	<div className="deal-weighted-effects text-center">
-					<Link to="/weighted-results"><img onClick={this.handleSettings} src="/Images/DealWeightedSideEffects.png" /></Link>
-					<Link to="/weighted-results"><img onClick={this.handleRandom} src="/Images/DealRandomSideEffects.png"/></Link>
+			 	<div className="deal-weighted-effects row">
+			 		<div className="text-left col-xs-6">
+						<Link to="/weighted-results"><img onClick={this.handleSettings} src="/Images/DealWeightedSideEffects.png" /></Link>
+					</div>
+					<div className="col-xs-6 text-right">
+						<Link to="/weighted-results"><img onClick={this.handleRandom} src="/Images/DealRandomSideEffects.png"/></Link>
+					</div>
 				</div>
 			</div>
 		)	

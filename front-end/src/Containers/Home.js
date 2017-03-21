@@ -29,39 +29,38 @@ class Home extends Component {
 	  	var loggedInResult = 'Login';
 	  	var createAccountOrLogout = 'Create Account'
 	  	var Message = 'Please Sign In'
-	  	// if (this.props.loginResponse !== null) {
 	  		console.log("this.props.loginResponse");
 	  		console.log(this.props.loginResponse);
 	  		if (this.props.loginResponse.userId > 0) {
-	  			loggedInResult = "Hi, " + this.props.loginResponse.username + "!"
+	  			loggedInResult = "Hi, " + this.props.loginResponse.username + "!";
 	  			createAccountOrLogout = <Link to="/" className="links" onClick={this.handleLogout}>Logout</Link>
 	  		}
 	  		console.log(loggedInResult);
 	  		console.log(this.props.loginResponse);
 
-  	// }
+  	
   
-    return (
-		<div className="content">
-			
-			<div className="buttons text-center col-sm-12">
-				<Link to="/balancing"><img src="../Images/DealSideEffects.png" role="presentation" /></Link>
-			</div>
-			<div className="buttons text-center col-sm-12">
-				<Link to="/sideeffects"><img src="../Images/ViewSideEffects.png" role="presentation" /></Link>
-			</div>
-			<div className="buttons text-center col-sm-12">
-				<Link to="/"><img src="../Images/About.png" role="presentation" /></Link>
-			</div>
+	    return (
+			<div className="content">
+				
+				<div className="buttons text-center col-sm-12">
+					<Link to="/balancing"><img src="../Images/DealSideEffects.png" role="presentation" /></Link>
+				</div>
+				<div className="buttons text-center col-sm-12">
+					<Link to="/sideeffects"><img src="../Images/ViewSideEffects.png" role="presentation" /></Link>
+				</div>
+				<div className="buttons text-center col-sm-12">
+					<Link to="/"><img src="../Images/About.png" role="presentation" /></Link>
+				</div>
 
-			<div className="container col-sm-12 text-left">
-				<Link to="/login" className="links">{loggedInResult}</Link>
-				<br />
-				<Link to="/register" className="links">{createAccountOrLogout}</Link>
+				<div className="container col-sm-12 text-left">
+					<Link to="/login" className="links">{loggedInResult}</Link>
+					<br />
+					<Link to="/register" className="links">{createAccountOrLogout}</Link>
+				</div>
 			</div>
-		</div>
-    );
-  }
+	    );
+	}
 }
 
 function mapStateToProps(state) {
