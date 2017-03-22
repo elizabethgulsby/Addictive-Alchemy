@@ -74,6 +74,9 @@ Body {
   perspective: 580px;
   margin-bottom: 100px;
 }
+.click-handler img{
+  box-shadow: 0 20px 10px rgba(0, 0, 0, 0.4), 0 -20px 50px rgba(0, 0, 0, 0.4);
+}
 .locked{
   transform: 
   translate(30%,350%);
@@ -106,7 +109,8 @@ Body {
   display: inline-block;
   height: 100%;
   width: 100%;
-  margin: auto;
+/*   margin: auto;
+  border: 1px solid black; */
 }
 .lock-image{
   width: 40%;
@@ -128,18 +132,20 @@ Body {
   margin-bottom: 10px;
 }
 .shadow{
-  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.4) inset, 0 -8px 5px rgba(0, 0, 0, 0.4) inset;
-  padding: 20px;
+  box-shadow: 0 2px 50px rgba(0, 0, 0, 0.4) inset, 0 -8px 50px rgba(0, 0, 0, 0.4) inset;
+  padding: 40px;
   border-radius: 4%;
-  margin: 20px;
+  margin-bottom: 20px;
 }
 .test{
   border: 1px solid black;
 }
 .nav-main{
-  box-shadow: 0 3px 55px rgba(0, 0, 0, 0.4), 0 -3px 55px rgba(0, 0, 0, 0.4);
-  margin: 25px;
-  border-radius: 1%
+  box-shadow: 0 30px 50px rgba(0, 0, 0, 0.4), 0 -30px 50px rgba(0, 0, 0, 0.4);
+  margin-bottom: 20px;
+  margin-top: 20px;
+  border-radius: 2%;
+  background: url('/Images/background.jpg');
 }
 .buttons{
   margin-top: 20px;
