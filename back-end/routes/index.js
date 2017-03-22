@@ -313,13 +313,12 @@ router.post('/weighted-results', function(req, res, next) {
 
 
 //route to return all side effects on "View Side Effects" page
-router.get('/sideeffects', function(req, res, next) {
+router.get('/display', function(req, res, next) {
 	// var favorited = req.body.favorited;
 	// var blocked = req.body.blocked;
-	// var isLoggedIn = req.body.isLoggedIn;
+	// var userId = req.body.userId;
 
-	//check to see if anyone is logged in; if they are and they have favorited a side effect (onclick), insert user_id, favorited, and side_effect_id into database
-	// var checkLoggedInQuery = 
+	
 });
 
 
