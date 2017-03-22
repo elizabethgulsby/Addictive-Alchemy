@@ -62,6 +62,7 @@ router.post('/login', function(req, res, next) {
 				})
 			}
 			else {
+			// else if (checkHash === true) {
 				//password found, username checks out - add token that keeps user logged in for 1 hr max
 				var token = randtoken.uid(40);
 				console.log("5: Here is the username: " + username);
@@ -76,8 +77,19 @@ router.post('/login', function(req, res, next) {
 						username: req.body.username
 					});
 				});
+
 				console.log("6: Is there an error?");
 			}
+			// else {
+			// 	//user has logged out.  Delete token from database. 
+			// 	var loggedOutQuery = "UPDATE users SET token = NULL where user_id = ?";
+			// 	connection.query(loggedOutQuery, [req.body.username], (error3, results3, fields3) => {
+			// 		if (error3) throw error3;
+			// 		res.json({
+			// 			msg: "User has logged out!"
+			// 		})
+			// 	})
+			// }
 		}
 	});
 });
