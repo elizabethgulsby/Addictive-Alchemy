@@ -1,12 +1,12 @@
 export default function (state = [], action) {
-	console.log("Side Effect Reducer - action");
+	console.log("Display - action");
 	console.log(action)
 	switch (action.type) {
 		case "sideeffect":
-		console.log("SideEffect Reducer returning payload!");
+		console.log("Display Reducer returning payload!");
 			return action.payload
 		default:
-			console.log("SideEffectReducer returning state");
+			console.log("DisplayReducer returning state");
 			return state;
 	}
 }

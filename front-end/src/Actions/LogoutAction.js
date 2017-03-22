@@ -1,3 +1,5 @@
+import $ from 'jquery'
+
 export default function(logoutState) {
 	console.log(logoutState);
 		return {
