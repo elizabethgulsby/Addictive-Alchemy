@@ -23,9 +23,10 @@ Body {
   font-size: 20px;
 }
 .links {
-  color:  #0066CC;
+  color:  black;
   font-family: 'Fenix', sans-serif;
-  font-size: 20px;
+  font-size: 30px;
+  /* background-color:  #aa7284; */
 }
 .lock-image img{
   border-radius: 10%;
@@ -42,7 +43,7 @@ Body {
   -webkit-transition: -webkit-transform 1s;
   -moz-transition: -moz-transform 1s;
   -o-transition: -o-transform 1s;
-  transition: transform 1s;
+  transition: transform 2s;
   -webkit-transform-style: preserve-3d;
   -moz-transform-style: preserve-3d;
   -o-transform-style: preserve-3d;
@@ -121,6 +122,40 @@ Body {
   font-size: 52px;
   font-weight: 900;
 }
+.balancing{
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.4) inset, 0 -8px 5px rgba(0, 0, 0, 0.4) inset;
+  border-radius: 4%;
+  margin-bottom: 10px;
+}
+.shadow{
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.4) inset, 0 -8px 5px rgba(0, 0, 0, 0.4) inset;
+  padding: 20px;
+  border-radius: 4%;
+  margin: 20px;
+}
+.test{
+  border: 1px solid black;
+}
+.nav-main{
+  box-shadow: 0 3px 55px rgba(0, 0, 0, 0.4), 0 -3px 55px rgba(0, 0, 0, 0.4);
+  margin: 25px;
+  border-radius: 1%
+}
+.buttons{
+  margin-top: 20px;
+}
+.preferences button{
+  background: none;
+  border-radius: 20%;
+  margin-top: 5px;
+  margin-bottom: 20px;
+  font-family: 'Fenix', sans-serif;
+  font-size: 20px;
+  outline: none;
+}
+#favorite{
+  margin-left: 45%;
+}
 
 
    /* / / / / RANGESLIDER CSS OVERRIDES */
@@ -133,7 +168,6 @@ Body {
 .rangeslider .rangeslider__handle {
   cursor: grab !important;
   box-shadow: 0 1px 3px rgba(0, 0, 0, 0.4), 0 -1px 3px rgba(0, 0, 0, 0.4) !important;
-
   border: none !important;
   background: none !important;
   top: -20px !important;
@@ -176,43 +210,5 @@ Body {
 }
 .rangeslider .rangeslider__tooltip span {
   margin-top: 0px !important;
-}
-.balancing{
-  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.4) inset, 0 -8px 5px rgba(0, 0, 0, 0.4) inset;
-  border-radius: 4%;
-  margin-bottom: 10px;
-}
-.shadow{
-  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.4) inset, 0 -8px 5px rgba(0, 0, 0, 0.4) inset;
-  padding: 20px;
-  border-radius: 4%;
-  margin: 20px;
-}
-.test{
-  border: 1px solid black;
-}
-.nav-main{
-  box-shadow: 0 3px 55px rgba(0, 0, 0, 0.4), 0 -3px 55px rgba(0, 0, 0, 0.4);
-  margin: 25px;
-  border-radius: 1%
-}
-.buttons{
-  margin-top: 20px;
-}
-.button-wrapper{
-
-}
-.preferences button{
-  background: none;
-  border-radius: 20%;
-  margin-top: 5px;
-  margin-bottom: 20px;
-  font-family: 'Fenix', sans-serif;
-  font-size: 20px;
-
-
-}
-#favorite{
-  margin-left: 45%;
 }
 
