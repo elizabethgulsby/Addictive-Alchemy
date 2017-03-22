@@ -6,7 +6,7 @@ import {connect} from 'react-redux';
 import {bindActionCreators} from 'redux';
 import {hashHistory} from 'react-router';
 import LoginAction from '../Actions/LoginAction.js';
-//will need 2 separate actions for blocked and favorited; pass to dispatch, have reducer handle both action.type(s) with separate responses returning for each(?)
+//Hook for future versions: will need 2 separate actions for blocked and favorited; pass to dispatch, have reducer handle both action.type(s) with separate responses returning for each - will be handled within the same route?
 
 class Display extends Component{
 	constructor(props) {
@@ -72,6 +72,7 @@ class Display extends Component{
 		let imageFront = this.props.card.cardImageFront;
 		let imageBack = this.props.card.cardImageBack;
 
+		//Hook
 		if (this.props.loginResponse.userId > 0) {
 			var buttonDiv = <div className="row">
 					<div className="preferences favorite col-xs-6">

@@ -29,20 +29,23 @@ class Login extends Component {
 
 
 	render() {
+		var LoggedInCounter = 0;
 		if (this.props.loginResponse.msg === "User does not exist.") {
-			//This is a workaround.  Please change.  User needs a way to know that they've entered an invalid username so that the commented out message can appear on error.
-			// var Message = "Please Sign In"
-			var Message = "That user does not exist.  Please try again."
+			if (LoggedInCounter !== 0) {
+				var Message = "That user does not exist.  Please try again."
+			}
+			else {
+				Message = "Please Sign In"
+			}
+			
 		}
 		else if (this.props.loginResponse.msg === "Bad Password!") {
 			Message = "Password not found.  Please try again."
 		}
 		else if (this.props.loginResponse.msg === "User exists! Insert token.") {
 			hashHistory.push('/');
+			LoggedInCounter++;
 		}
-		// else if (this.props.logoutResponse.msg === "User has logged out!"){
-		// 	Message = "Please Sign In"
-		// }
 		else {
 			Message = "Please Sign In"
 		}
