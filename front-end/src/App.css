@@ -212,3 +212,15 @@ Body {
   margin-top: 0px !important;
 }
 
+.about-title {
+  text-align: center;
+  font-family: 'Fenix', sans-serif;
+}
+
+.text {
+  background: rgba(255, 255, 255, .3);
+  border-radius: 1%;
+  padding: 5px 10px 5px 10px;
+  font-family: 'Fenix', sans-serif;
+}
+

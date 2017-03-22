@@ -1,70 +1,19 @@
 import React, { Component } from 'react';
-import {Link} from 'react-router';
 import Display from './Display';
-import $ from 'jquery';
-import {connect} from 'react-redux';
-import {bindActionCreators} from 'redux';
-import {hashHistory} from 'react-router';
-// import SideEffectsAction from '../Actions/SideEffectsAction.js';
-import LoginAction from '../Actions/LoginAction.js';
 
 
 class SideEffects extends Component{
 	constructor(props) {
 		super(props);
 		this.state = {
-	  		Flipped: false,
-	  		Favorited: false,
-	  		Blocked: false
+
 		}
-		this.handleBlocked = this.handleBlocked.bind(this);
-		this.handleFavorited = this.handleFavorited.bind(this);
-		// this.checkLoggedIn = this.checkLoggedIn.bind(this);
+
 	}
 
-
-	handleBlocked() {
-		if (this.state.Blocked === true) {
-			this.setState({
-				Blocked: false
-			})
-		}
-		else if (this.state.Blocked === false) {
-			this.setState({
-				Blocked: true
-			})
-		}
-	}
-
-	handleFavorited() {
-		if (this.state.Favorited === true) {
-			this.setState({
-				Favorited: false
-			})
-		}
-		else if (this.state.Favorited === false) {
-			this.setState({
-				Favorited: true
-			})
-		}
-	}
-
-	// checkLoggedIn() {
-	// 	this.props.loginAction({
-	// 		isLoggedIn: false
-	// 	})
-	// }
-
-	// componentDidMount() {
-	// 	// this.props.loginAction();
-	// }
   
 	render(){
 
-		console.log("SideEffects render() this.props.loginResponse.userId");
-		console.log(this.props.loginResponse.userId);
-
-		// this.props.sideEffectsAction();
 
 		var allSideEffects = [];
 		var allSideEffectsPreComponent = [];
@@ -196,9 +145,7 @@ class SideEffects extends Component{
 				}
 			];
 		
-		//if user is logged in, buttons appear below cards
-		if (this.props.loginResponse.userId > 0) {
-			// console.log("YES it runs!");
+
 			allSideEffectsPreComponent.map((individualCard, index) => {
 				allSideEffects.push(
 					<div>		
@@ -206,16 +153,7 @@ class SideEffects extends Component{
 					</div>
 				)
 			})
-		}
-		else {
-			allSideEffectsPreComponent.map((individualCard, index) => {
-				allSideEffects.push(
-					<div>		
-						<Display card={individualCard} key={index} />
-					</div>
-				)
-			})
-		}
+
 
 		return(
 			<div className="container">
@@ -225,17 +163,4 @@ class SideEffects extends Component{
 	}
 }
 
-function mapStateToProps(state) {
-  return {
-	loginResponse: state.login
-  }
-}
-
-function mapDispatchToProps(dispatch) {
-  return bindActionCreators({
-	loginAction: LoginAction
-  }, dispatch)
-}
-
-
-export default connect(mapStateToProps, mapDispatchToProps)(SideEffects);
+export default SideEffects;
