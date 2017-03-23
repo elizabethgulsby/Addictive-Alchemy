@@ -4,7 +4,7 @@ export default function(sideEffectData) {
 
     var thePromise = $.ajax({
         method: "GET",
-        url: "http://localhost:3000/display",
+        url: "http://www.elizabethgulsby.com:3030/display",
         data: sideEffectData
     });
     return {

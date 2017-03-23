@@ -4,7 +4,7 @@ export default function(weightData) {
 
     var thePromise = $.ajax({
         method: "GET",
-        url: "http://localhost:3000/weighted-results",
+        url: "http://www.elizabethgulsby.com:3030/weighted-results",
         data: weightData
     });
     return {

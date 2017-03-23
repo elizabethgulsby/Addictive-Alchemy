@@ -4,7 +4,7 @@ export default function(favoriteData) {
 	console.log(favoriteData)
     var thePromise = $.ajax({
         method: "POST",
-        url: "http://localhost:3000/display",
+        url: "http://www.elizabethgulsby.com:3030/display",
         data: favoriteData
     });
     return {

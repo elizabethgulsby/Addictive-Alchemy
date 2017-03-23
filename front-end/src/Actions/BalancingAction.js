@@ -4,7 +4,7 @@ export default function(balancingData){
 	// console.log("balancingAction");
 	var thePromise = $.ajax({
 		method: "POST",
-		url: "http://localhost:3000/weighted-results",
+		url: "http://www.elizabethgulsby.com:3030/weighted-results",
 		data: balancingData
 	});
 	return {
