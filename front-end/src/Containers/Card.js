@@ -60,7 +60,7 @@ class Card extends Component {
 
 			<div className="main-card col-xs-4 text-center">
 				<div className={lockStatus} onClick={this.handleLock}>
-					<img src="../Images/LockBevel.png" role="presentation" />
+					<img src="../images/LockBevel.png" role="presentation" />
 				</div>
 				<div className="click-handler" onClick={this.handleFlip}>
 					<div className={flip}>

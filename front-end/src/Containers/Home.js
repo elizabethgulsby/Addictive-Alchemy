@@ -45,13 +45,13 @@ class Home extends Component {
 		<div className="content">
 			
 			<div className="buttons text-center col-sm-12">
-				<Link to="/balancing"><img src="../Images/DealSideEffectsThin.png" role="presentation" /></Link>
+				<Link to="/balancing"><img src="../images/DealSideEffectsThin.png" role="presentation" /></Link>
 			</div>
 			<div className="buttons text-center col-sm-12">
-				<Link to="/sideeffects"><img src="../Images/ViewSideEffectsThin.png" role="presentation" /></Link>
+				<Link to="/sideeffects"><img src="../images/ViewSideEffectsThin.png" role="presentation" /></Link>
 			</div>
 			<div className="buttons text-center col-sm-12">
-				<Link to="/about"><img src="../Images/AboutThin.png" role="presentation" /></Link>
+				<Link to="/about"><img src="../images/AboutThin.png" role="presentation" /></Link>
 			</div>
 				<div className="container col-sm-12 text-left">
 					<Link to="/login" className="links">{loggedInResult}</Link>
