@@ -20,29 +20,29 @@ class Weightedresults extends Component {
 
 		responsefromDB = [
 		{   
-		 cardImageBack: <img role="presentation" src={"../Images/" + this.props.balancingResponse.FinalSideEffects[0] + "_Back.png"} />,
-		 cardImageFront: <img role="presentation" src={"../Images/" + this.props.balancingResponse.FinalSideEffects[0] + "_Front.png"} />
+		 cardImageBack: <img role="presentation" src={"../images/" + this.props.balancingResponse.FinalSideEffects[0] + "_Back.png"} />,
+		 cardImageFront: <img role="presentation" src={"../images/" + this.props.balancingResponse.FinalSideEffects[0] + "_Front.png"} />
 		},
 	   	{
 	   
-		 cardImageBack: <img role="presentation" src={"../Images/" + this.props.balancingResponse.FinalSideEffects[1] + "_Back.png"} /> ,
-		 cardImageFront: <img role="presentation" src={"../Images/" + this.props.balancingResponse.FinalSideEffects[1] + "_Front.png"} />
+		 cardImageBack: <img role="presentation" src={"../images/" + this.props.balancingResponse.FinalSideEffects[1] + "_Back.png"} /> ,
+		 cardImageFront: <img role="presentation" src={"../images/" + this.props.balancingResponse.FinalSideEffects[1] + "_Front.png"} />
 	   	},
 	   	{         
-		 cardImageBack: <img role="presentation" src={"../Images/" + this.props.balancingResponse.FinalSideEffects[2] + "_Back.png"} /> ,
-		 cardImageFront: <img role="presentation" src={"../Images/" + this.props.balancingResponse.FinalSideEffects[2] + "_Front.png"} />
+		 cardImageBack: <img role="presentation" src={"../images/" + this.props.balancingResponse.FinalSideEffects[2] + "_Back.png"} /> ,
+		 cardImageFront: <img role="presentation" src={"../images/" + this.props.balancingResponse.FinalSideEffects[2] + "_Front.png"} />
 	 	},
 		{
-		 cardImageBack: <img role="presentation" src={"../Images/" + this.props.balancingResponse.FinalSideEffects[3] + "_Back.png"} /> ,
-		 cardImageFront: <img role="presentation" src={"../Images/" + this.props.balancingResponse.FinalSideEffects[3] + "_Front.png"} />
+		 cardImageBack: <img role="presentation" src={"../images/" + this.props.balancingResponse.FinalSideEffects[3] + "_Back.png"} /> ,
+		 cardImageFront: <img role="presentation" src={"../images/" + this.props.balancingResponse.FinalSideEffects[3] + "_Front.png"} />
 	   	},
 	   	{ 
-		 cardImageBack: <img role="presentation" src={"../Images/" + this.props.balancingResponse.FinalSideEffects[4] + "_Back.png"} /> ,
-		 cardImageFront: <img role="presentation" src={"../Images/" + this.props.balancingResponse.FinalSideEffects[4] + "_Front.png"} />
+		 cardImageBack: <img role="presentation" src={"../images/" + this.props.balancingResponse.FinalSideEffects[4] + "_Back.png"} /> ,
+		 cardImageFront: <img role="presentation" src={"../images/" + this.props.balancingResponse.FinalSideEffects[4] + "_Front.png"} />
 	   	},
 	   	{ 
-		 cardImageBack: <img role="presentation" src={"../Images/" + this.props.balancingResponse.FinalSideEffects[5] + "_Back.png"} /> ,
-		 cardImageFront: <img role="presentation" src={"../Images/" + this.props.balancingResponse.FinalSideEffects[5] + "_Front.png"} />
+		 cardImageBack: <img role="presentation" src={"../images/" + this.props.balancingResponse.FinalSideEffects[5] + "_Back.png"} /> ,
+		 cardImageFront: <img role="presentation" src={"../images/" + this.props.balancingResponse.FinalSideEffects[5] + "_Front.png"} />
 	   	}
 	   	];
 
