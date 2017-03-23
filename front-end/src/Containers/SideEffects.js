@@ -149,7 +149,7 @@ class SideEffects extends Component{
 			allSideEffectsPreComponent.map((individualCard, index) => {
 				allSideEffects.push(
 					<div>		
-						<Display card={individualCard} key={index} />
+						<Display card={individualCard} cardNumber={index + 1} key={index} />
 					</div>
 				)
 			})

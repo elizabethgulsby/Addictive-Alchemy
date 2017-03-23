@@ -1,14 +1,14 @@
 import $ from 'jquery';
 
-export default function(sideEffectData) {
-
+export default function(favoriteData) {
+	console.log(favoriteData)
     var thePromise = $.ajax({
-        method: "GET",
+        method: "POST",
         url: "http://localhost:3000/display",
-        data: sideEffectData
+        data: favoriteData
     });
     return {
-        type: "sideeffect",
+        type: "favorited",
         payload: thePromise
     }
 

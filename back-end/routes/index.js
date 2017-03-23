@@ -249,8 +249,10 @@ router.post('/weighted-results', function(req, res, next) {
 
 						//if the side_effect is favorited, add 2 to the weight (game designer requested that value to be added = 2)
 						//favorited still impacts non-weighted side effects per game designer's request
-						if (results[i].favorited == 1) {
-							weight += 2;
+						if (results[i].favorited === true) {
+							console.log('Favorited bump');
+							console.log(results[i].side_effect_id);
+							weight += 200;
 						}
 						//weight is to equal 0 so that it is not included in any weighting results if blocked by user
 						if (results[i].blocked == 1) {
@@ -325,12 +327,52 @@ router.post('/weighted-results', function(req, res, next) {
 
 
 //route to return all side effects on "View Side Effects" page
-router.get('/display', function(req, res, next) {
-	// var favorited = req.body.favorited;
-	// var blocked = req.body.blocked;
-	// var userId = req.body.userId;
+router.post('/display', function(req, res, next) {
 
+	console.log("I've been triggered!")
+	console.log(req.body);
+
+	//favoritedCardNumber = side_effect_id passed in from "Favorite" button
+	var favoritedCardNumber = req.body.cardNumber;
+	console.log("Card Number: " + favoritedCardNumber);
 	
+	//favorited = status of favorited (1 = yes, 0 = no)
+	var favorited = req.body.favorite;
+
+	// var blocked = req.body.blocked;
+
+	//userId = passed in from this.props.loginResponse.userId within Display
+	var userId = req.body.userId;
+
+	console.log("WillMount: " + req.body.willMount);
+	//need to make a database call before the component mounts to see if favoritedCardNumber is favorited.
+	if (JSON.parse(req.body.willMount) == true) {
+		// then this is the code for the will mount
+		console.log("Will Mount!");
+		console.log(favoritedCardNumber);
+		//query to 
+		res.json({ Favorited: "Mom" });
+
+	}
+	else {
+		console.log("Clicked not mounted!");
+		//check to see if userId/favorited value pairing exists in database
+		var pairingQuery = "SELECT user_id, side_effect_id FROM user_side_effect_weights WHERE user_id = ? AND side_effect_id = ?";
+		connection.query(pairingQuery, [userId, favoritedCardNumber], (error, results, fields) => {
+			if (error) throw error;
+			console.log(results)
+			if (results.length > 0) {
+				var insertFavoritedQuery = "UPDATE user_side_effect_weights SET favorited = ? WHERE user_id = ? and side_effect_id = ?";
+				connection.query(insertFavoritedQuery, [favorited, userId, favoritedCardNumber], (error2, results2, fields2) => {
+					if (error2) throw error2;
+					console.log("results2: " + results2);
+					res.json({
+						msg: "Inserted value into 'favorited'."
+					})
+				})
+			}
+		});
+	}	
 });
 
 

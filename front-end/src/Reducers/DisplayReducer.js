@@ -5,6 +5,8 @@ export default function (state = [], action) {
 		case "sideeffect":
 		console.log("Display Reducer returning payload!");
 			return action.payload
+		case "favorited":
+			return action.payload
 		default:
 			console.log("DisplayReducer returning state");
 			return state;

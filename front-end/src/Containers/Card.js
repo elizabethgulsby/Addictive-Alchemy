@@ -9,7 +9,8 @@ class Card extends Component {
 			Flipped: false
 		}
 	this.handleLock = this.handleLock.bind(this);
-	this.handleFlip = this.handleFlip.bind(this);	
+	this.handleFlip = this.handleFlip.bind(this);
+
 	}
 
 	handleLock = function() {
@@ -54,7 +55,9 @@ class Card extends Component {
 		var imageBack = [this.props.card.cardImageBack];
 		var imageFront = [this.props.card.cardImageFront];
 
+
 		return (
+
 			<div className="main-card col-xs-4 text-center">
 				<div className={lockStatus} onClick={this.handleLock}>
 					<img src="../Images/LockBevel.png" role="presentation" />
