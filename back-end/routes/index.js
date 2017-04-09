@@ -167,7 +167,7 @@ router.post('/weighted-results', function(req, res, next) {
 	
 
 		var cardPool = [];
-		//hard-coded test integer values below; will be swapped for actual values being passed from slider (req.body?)
+		//pushing each index of allSideEffects() plus speedweight/complexityweight from slider 
 		cardPool.push(populateCardPool(allSideEffects[0], speedweight, complexityweight));
 		cardPool.push(populateCardPool(allSideEffects[1], speedweight, complexityweight));
 		cardPool.push(populateCardPool(allSideEffects[2], speedweight, complexityweight));
@@ -175,7 +175,7 @@ router.post('/weighted-results', function(req, res, next) {
 		cardPool.push(populateCardPool(allSideEffects[4], speedweight, complexityweight));
 		cardPool.push(populateCardPool(allSideEffects[5], speedweight, complexityweight));
 
-		//this needs to wait until the anonymous function in populateCardPool finishes - output will be an array of weighted arrays (see cardPool.push() statements above)
+		//this needs to wait until the anonymous function in populateCardPool() finishes - output will be an array of weighted arrays (see cardPool.push() statements above)
 		Promise.all(cardPool).then(cardPool => {
 			// res.json("Purple Purple: " + cardPool[0] + " Green Green: " + cardPool[1] + "Blue Blue: " + cardPool[2] + "Purple Green: " + cardPool[3] + "Purple Blue: " + cardPool[4] + "Green Blue: " + cardPool[5]);
 
